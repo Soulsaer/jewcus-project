@@ -88,6 +88,7 @@ Route::post('stripe', [CheckoutController::class, 'stripePost'])->name('stripe.p
 
 // Home routes
 Route::get('/', [WebHomeController::class, 'index'])->name('homeIndex');
+Route::get('/products', [WebHomeController::class, 'products'])->name('products');
 Route::get('cart', [WebHomeController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [WebHomeController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [WebHomeController::class, 'update'])->name('update.cart');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $title)
+{{-- @section('title', $title) --}}
 @section('meta_tags')
 <meta name="description" content="{{($description)}}">
 <meta name="keywords" content="{{($keyword)}}">
@@ -11,7 +11,7 @@
 
 @section('content')
 
-    <div class="m-0 p-0">
+    {{-- <div class="m-0 p-0">
         <img class="w-100" style="max-height: 300px;object-fit: cover;object-position: center;" src="{{asset('storage/lastblog_image/'.$blog->lastblog_image)}}" alt="{{ $blog->alt }}" />
         <div style="top: -80px;" class="mx-auto text-secondary position-relative container">
           <div class="text-center mb-4">
@@ -42,5 +42,5 @@
           </div>
           
         </div>
-    </div>
+    </div> --}}
 @endsection

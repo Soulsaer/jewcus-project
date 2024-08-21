@@ -17,8 +17,13 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('/assets/css/main.css?v=111') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    {{-- <link rel="stylesheet" href="{{ asset('/assets/css/main.css?v=112') }}"> --}}
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
@@ -27,14 +32,14 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
         integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('/assets/images/fav_logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}" />
 
     <link rel="canonical" href="{{ URL::current() }}"/>
     <link rel="alternate" href="{{ URL::current() }}" hreflang="en-gb" />
 
-    <script type="application/ld+json">
+    {{-- <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -60,7 +65,7 @@
       "https://www.etsy.com/shop/bluemoonsilvergifts"
       ]
     }
-    </script>
+    </script> --}}
 
     @yield('other_tags')
 
@@ -73,7 +78,10 @@
     <!--Google Analytics-->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR4R7XP3WR"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/indexmain.js"></script>
     <script>
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());

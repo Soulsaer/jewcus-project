@@ -106,7 +106,7 @@ class WebHomeController extends Controller
                 "discover",
                 "subChieldcategory",
                 "content_home",
-                // "formatTreeCategory",
+                "formatTreeCategory",
                 "keyword",
                 "title",
                 "others",
@@ -126,6 +126,13 @@ class WebHomeController extends Controller
                 
             ])
         );
+    }
+
+    public function products(){
+        $products = Product::where('stock_status', 1)->get();
+        $faqs = Faq::all();
+
+        return view("products", compact('products', 'faqs'));
     }
     
 
@@ -832,7 +839,7 @@ public function businessUs()
     {
         $formatTreeCategory = Category::tree();
         $subChieldcategory = Chieldcategory::all();
-   $international_shop = Shop::all();
+        $international_shop = Shop::all();
  
 
         $meta_data = TblMetaInfo::find(7);
@@ -863,7 +870,7 @@ public function businessUs()
     {
         $formatTreeCategory = Category::tree();
         $subChieldcategory = Chieldcategory::all();
-   $international_shop = Shop::all();
+        $international_shop = Shop::all();
      
 
         $meta_data = TblMetaInfo::find(9);
@@ -891,7 +898,7 @@ public function businessUs()
     }
 
 
- public function addToCart($id)
+        public function addToCart($id)
     {
         $product = Product::findOrFail($id);
         
@@ -1031,7 +1038,7 @@ public function showRegistrationForm(Request $request){
             ])
         );
 }
-public function register(Request $request)
+    public function register(Request $request)
     {
          $this->validate($request, [
             'name' => 'required|string|max:255',
@@ -1050,7 +1057,8 @@ public function register(Request $request)
 
         return redirect('/')->with('success', 'Registration successful');
     }
-public function webLogin(Request $request)
+
+    public function webLogin(Request $request)
     {
      
         // $cartData = session('cart');

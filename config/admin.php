@@ -275,14 +275,14 @@ return [
     |    "skin-red", "skin-red-light", "skin-black", "skin-black-light".
     |
     */
-    'skin' => env('ADMIN_SKIN', 'skin-blue-light'),
+    'skin' => env('ADMIN_SKIN', 'skin-green-light'),
 
     /*
     |--------------------------------------------------------------------------
     | Application layout
     |--------------------------------------------------------------------------
     |
-    | This value is the layout of admin pages.
+    | This value is the layout of admin pages.  
     | @see https://adminlte.io/docs/2.4/layout
     |
     | Supported: "fixed", "layout-boxed", "layout-top-nav", "sidebar-collapse",
