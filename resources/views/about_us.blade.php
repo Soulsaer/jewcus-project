@@ -24,7 +24,7 @@
         </div>
         <!--  -->
         <div class="container my-5">
-            <p style="font-size: 30px;" class="my-3 text-dark">Aboghjgkjgkjut Us</p>
+            <p style="font-size: 30px;" class="my-3 text-dark">About Us</p>
             <p class="my-3 " style="font-size:16px;">We’re so glad you’re looking here for the perfect piece of jewelry! Our hope is that every piece you create with us speaks to your soul, in the way only vibrant colored gemstones can.</p>
             <p class="my-3 " style="font-size:16px;">It is with this very hope that my wife, Aditi, and I brought Angara into the world more than 15 years ago. Jewelry is our destiny. Both of us come from generations of jewelers. Colored gemstones – with all their power and history – are in our blood.</p>
             <p class="my-3 " style="font-size:16px;">For a while, I thought I could escape the lure of jewelry. Following a stint at McKinsey & Company, I pursued my MBA at Harvard. But I was eventually compelled to return to my roots. It all started when Aditi and I were looking for jewelry to commemorate a milestone in our marriage, but nothing we saw really spoke to us or captured our relationship in a unique and memorable way. Everything was stamped out. Commercial. With little personality or individualism.</p>
