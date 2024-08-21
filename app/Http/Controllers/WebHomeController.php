@@ -395,12 +395,11 @@ class WebHomeController extends Controller
         $subChieldcategory = Chieldcategory::all();
            $international_shop = Shop::all();
 
-        $category = Category::where("status", "1")->get();
-        $subcategory = Subcategory::where("status", "1")->get();
-        $childcategory = Chieldcategory::where("status", "1")->get();
+        $category = Category::where("status", 1)->get();
+        $subcategory = Subcategory::where("status", 1)->get();
+        $childcategory = Chieldcategory::where("status", 1)->get();
         
-        
-         $allblog = Lastblog::where("status", "1")->get();
+         $allblog = Lastblog::where("status", 1)->get();
 
         $meta_data = TblMetaInfo::find(5);
         if ($meta_data) {
