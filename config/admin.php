@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => 'Huzurr-admin',
+    'name' => 'Jewcus',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>Huzurr</b> admin',
+    'logo' => '<b>Jewcus</b> admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>HA</b>',
+    'logo-mini' => '<b>JS</b>',
 
     /*
     |--------------------------------------------------------------------------
