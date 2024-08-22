@@ -18,6 +18,7 @@ Route::group([
     $router->resource('shops', ShopController::class);
     $router->resource('ads', AdsController::class);
     $router->resource('products', ProductController::class);
+    $router->resource('new-products', NewProductsController::class);
     $router->resource('orders', OrderController::class);
 
     $router->resource('categories', CategoryController::class);

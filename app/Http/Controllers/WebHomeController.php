@@ -9,6 +9,7 @@ use App\Models\Lastblog;
 use App\Models\Slider;
 use App\Models\Gellery;
 use App\Models\Product;
+use App\Models\NewProduct;
 use App\Models\Chieldcategory;
 use App\Models\Subcategory;
 use App\Models\Category;
@@ -129,7 +130,7 @@ class WebHomeController extends Controller
     }
 
     public function products(){
-        $products = Product::where('stock_status', 1)->get();
+        $products = NewProduct::all();
         $faqs = Faq::all();
 
         return view("products", compact('products', 'faqs'));
