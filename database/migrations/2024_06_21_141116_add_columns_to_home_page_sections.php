@@ -15,21 +15,20 @@ return new class extends Migration
     {
         Schema::table('home_page_sections', function (Blueprint $table) {
             $table->string('page_name', 150);
-            $table->string('rlc_section_title', 150)->nullable();
-            $table->string('rlc_section_tag_line', 150)->nullable();
-            $table->string('bjp_section_title', 150)->nullable();
-            $table->string('bjp_section_tag_line', 150)->nullable();
-            $table->string('rlc_section_image_1_title', 150)->nullable();
-            $table->string('rlc_section_image_1_link', 150)->nullable();
-            $table->string('rlc_section_image_2_title', 150)->nullable();
-            $table->string('rlc_section_image_2_link', 150)->nullable();
-            $table->string('rlc_section_video_title', 150)->nullable();
-            $table->string('rlc_section_video_link', 150)->nullable();
-            $table->string('bwu_section_sub_title', 150)->nullable();
-            $table->string('bwu_section_btn_name', 150)->nullable();
-            $table->string('bwu_section_image_4', 150)->nullable();
-            $table->string('bwu_section_image_4_alt', 150)->nullable();
+            $table->string('section_1_heading', 150)->nullable();
+            $table->string('section_1_sub_heading', 150)->nullable();
+            $table->json('section_1_images')->nullable();
+            $table->string('section_4_sub_heading', 255)->nullable();
+            $table->string('section_4_heading', 150)->nullable();
+            $table->string('section_4_image', 150)->nullable();
+            $table->string('section_4_video', 150)->nullable();
+            $table->string('section_4_btn_text', 150)->nullable();
+            $table->string('section_4_btn_url', 150)->nullable();
+            $table->string('section_8_heading', 150)->nullable();
+            $table->string('section_8_sub_heading', 150)->nullable();
+            $table->timestamps();
         });
+        
     }
 
     /**

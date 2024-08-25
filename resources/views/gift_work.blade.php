@@ -33,7 +33,7 @@
 
 @section('content')
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
     </button>
 
@@ -199,8 +199,8 @@
                 <button type="button" class="btn btn-dark" style="background-color: black;">Save changes</button>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
+    </div> --}}
 @endsection
 
 @section('js')

@@ -61,812 +61,6 @@
     </div>
  -->
     <!-- body -->
-    {{-- <main class="main">
-        <section class="home-slider position-relative">
-            <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
-                @foreach($slider as $_slider)
-                <div class="single-hero-slider single-animation-wrap">
-                    <div class="container-fluid slider_banner p-0 m-0">
-                        <div class="row align-items-center slider-animated-1">
-                            <div class="col-lg-12 slider_pro">
-                                @if($_slider->media_type == 'video')
-                                    <video width="100%" height="75%" autoplay muted loop >
-                                        <source src="{{ asset('storage/'.$_slider->slider_image) }}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-
-                                    <!-- <figure>
-                                        <video src="{{ asset('storage/'.$_slider->slider_image) }}" loop muted autoplay
-                                            width="100%" height="400px" style="object-fit: cover;"></video>
-                                    </figure> -->
-                                @else
-                                    <img src="{{ asset('storage/'.$_slider->slider_image) }}"
-                                    class="h-100" alt="{{ $_slider->alt_tag }}">
-                                @endif
-                                
-                                <!-- <video width="100%" height="100%" loop autoplay muted>
-                                    <source src="banner_video.mp4" type="video/mp4">
-                                </video> -->
-
-                                <!-- <div class="banner_overlay " style="left: 26% !important;top: 35%;">
-                                    <p style="font-size: 50px;font-weight: 400;font-family: Poppins, sans-serif;padding-bottom: 30px;color: black;">The Summer Sale</p>
-                                    <p style="font-size: 32px;font-weight: 400;font-family: Poppins, sans-serif;;padding-bottom: 30px;color: black;">Celebrate With Color</p>
-                                    <div class="d-flex justify-content-start align-items-center view_detail w-100 hover-up">
-                                        <a href="javascript:void(0)" class="d-block m-auto" style="background-color: transparent;color: black;">Shop Now<i
-                                        class="fa-solid fa-angle-right ps-2"></i></a>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="slider-arrow hero-slider-1-arrow"></div>
-        </section>
-
-        <!-- product category -->
-        <section class="featured section-padding  py-80 position-relative">
-            <div class="mx-3">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h3 class="homepage_heading mb-4">Discover Jewelry For Every Story</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach($discover as $item)
-                    <div class="col-lg-2 col-md-4 mb-md-3 col-6 mb-lg-0 py-1 fs-6">
-                        <a href="{{ url($item->slug) }}">
-                            <div class="banner-features wow fadeIn animated hover-up">
-                                <img src="{{asset('storage/'.$item->banner)}}" alt="{{$item->alt}}">
-                                <h4 class="bg-1">{{ $item->banner_heading }}</h4>
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-
-        <!-- shop_slider -->
-        <section class="shop_slider section-padding py-80">
-            <div class="">
-                <div class="row m-0">
-                    <div class="col-lg-12 m-0 p-0">
-                        <h3 class="homepage_heading ms-3">{{ $homeSection->mto_section_title }}</h3>
-                        <p class="fs-6 mb-4 text--center ms-3">{{ $homeSection->mto_section_tag_line }}</p>
-
-                        <div class="row m-0">
-                            <div class="col-lg-6 p-0">
-                                <video src="assets/video/11.mp4" loop muted autoplay width="100%"
-                                height="100%"></video>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 py-3 ph-md-0 d-flex align-items-start flex-column justify-content-center " style="background:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRE2h8-AjCDRTpTM3O6E1rmfBv6iS3R0GaHq2yC0RN_QXomTvh) no-repeat;background-size: cover;">
-                                <h3 class="title_shop text-center">{{ $homeSection->mto_section_sub_title }}</h3>
-                                <p class="para_shop text-center">{{ $homeSection->mto_section_sub_tag_line }}</p>
-                                <div class="py-3 d-flex justify-content-end align-items-center view_detail hover-up mx-auto">
-                                    <a href="{{ url('customized-jewelry') }}" class="fs-6">{{ $homeSection->mto_section_btn_title }}<i
-                                            class="fa-solid fa-angle-right ps-2"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="popular-categories section-padding py-80">
-            <div class="mx-3 wow fadeIn animated">
-                <h3 class="homepage_heading uppercase">Most Liked By People</h3>
-                <p class="fs-6 mb-4">From The Artist’s Heart To Your Jewelry Box.</p>
-                <div class="carausel-4-columns-cover arrow-center position-relative">
-                    <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
-                        id="carausel-4-columns-arrows"></div>
-                    <div class="carausel-4-columns carausel-arrow-center mb-3   "
-                        id="carausel-6-columns">
-                        @if($mostLiked)
-                        @foreach($mostLiked as $_productDetails)
-                        <div class="product-cart-wrap my-3 hover-up">
-                            <div class="product-img-action-wrap ">
-                                <div class="product-img product-img-zoom">
-                                    <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}">
-                                           
-                                        <img class="default-img" src="{{asset('storage/'.$_productDetails->product_image)}}" alt="">
-                                        <img class="hover-img" src="{{asset('storage/'.$_productDetails->second_image)}}" alt="">
-                                    </a>
-                                </div>
-                                
-                            </div>
-                            <div class="product-content-wrap">
-                                 
-                                <span>
-                                    <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}"  class="product-title"><!-- {{$_productDetails->name}} -->
-                                     {{ \Illuminate\Support\Str::limit($_productDetails->name, $limit = 40, $end = '...') }}
-                                    </a></span>
-                                 
-                                <div class="product-price">
-                                    <span>$ {{$_productDetails->special_price}} </span>
-                                    <span class="old-price">$ {{$_productDetails->price}}</span>
-                                </div>   
-                                <div class="product-action-1 pt-3 show">
-                                    <!-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                        <i class="fa-sharp fa-regular fa-eye"></i></a> -->
-                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fa-regular fa-heart"></i></a>
-                                    <a aria-label="Add To Cart" class="action-btn hover-up" href="{{ route('add.to.cart', $_productDetails->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @endif
-                        
-                    </div>
-                </div>
-                <div class="py-4 d-flex justify-content-end align-items-center view_detail hover-up">
-                    <a href="javascript:void(0)" class="fs-6">View More<i class="fa-solid fa-angle-right ps-2"></i></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- BEST COLLECTIONS -->
-        <section class="section-padding py-80">
-            <div class="mx-3">
-                <div class="row">
-                    <div class="col-lg-12 col-12">
-                        <h4 class="homepage_heading uppercase">{{ $homeSection->rlc_section_title }}</h4>
-                        <p class="fs-6 mb-4">{{ $homeSection->rlc_section_title }}</p>
-                        
-                        <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12 m-auto d-block  must_detail">
-                    <div class="border p-0 rounded hover-up pt-0 h-100">
-                        <div class="h-100">
-                            <img src="{{ asset('storage/'.$homeSection->rlc_section_image_1) }}" alt="" width="500px" height="600px">
-                        </div>
-                        <div class="text-center" style="background-color:black;border-radius:0 0 5px 5px;margin-top:-10px">
-                            <h4 class="py-2 text-light">{{ $homeSection->rlc_section_image_1_title }}</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12 m-auto d-block  must_detail">
-                    <div class="border p-0 rounded hover-up pt-0 h-100">
-                        <div class="h-100">
-                        <video src="assets/video/neckless.mp4" loop muted autoplay width="100%"
-                                        height="600px" style="object-fit:cover"></video>
-                        </div>
-                        <div class="text-center" style="background-color:black;border-radius:0 0 5px 5px;margin-top:-10px">
-                            <h4 class="py-2 text-light">{{ $homeSection->rlc_section_image_video_title }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12 m-auto d-block must_detail">
-                        <div class="border p-0 rounded hover-up pt-0 h-100">
-                            <div class="h-100">
-                            <img src="{{ asset('storage/'.$homeSection->rlc_section_image_2) }}" alt="" width="500px" height="600px">
-                            </div>
-                            <div class="text-center" style="background-color:black;border-radius:0 0 5px 5px;margin-top:-10px">
-                                <h4 class="py-2 text-light">{{ $homeSection->rlc_section_image_2_title }}</h4>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Monthly Best Sell -->
-       <section class="section-padding">
-            <div class="mx-3 py-80">
-                <div class="heading-tab d-flex">
-                    <div class="heading-tab-left wow fadeIn animated">
-                        <h3 class="homepage_heading mb-4">New & Notable Selling Product</h3>
-                    </div>
-                    <div class="heading-tab-right wow fadeIn animated">
-                        <ul class="nav nav-tabs right no-border" id="myTab-1" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="nav-tab-one-1" data-bs-toggle="tab"
-                                        data-bs-target="#tab-one-1" type="button" role="tab" aria-controls="tab-one"
-                                        aria-selected="true">Rings
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-two-1" data-bs-toggle="tab"
-                                        data-bs-target="#tab-two-1" type="button" role="tab" aria-controls="tab-two"
-                                        aria-selected="false">Earrings
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-three-1" data-bs-toggle="tab"
-                                        data-bs-target="#tab-three-1" type="button" role="tab" aria-controls="tab-three"
-                                        aria-selected="false">Necklaces
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="nav-tab-four-1" data-bs-toggle="tab"
-                                        data-bs-target="#tab-four-1" type="button" role="tab" aria-controls="tab-four"
-                                        aria-selected="false">Bracelets
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="tab-content wow fadeIn animated" id="myTabContent-1">
-                            <div class="tab-pane fade show active" id="tab-one-1" role="tabpanel" aria-labelledby="tab-one-1">
-                                <div class="carausel-4-columns-cover arrow-center position-relative">
-                                    <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-arrows"></div>
-                                    <div class="carausel-4-columns carausel-arrow-center mb-3" id="carausel-4-columns">
-                                        @if ($product1) 
-                                        @foreach($product1 as $_productDetails)
-                                            <div class="product-cart-wrap my-3 hover-up">
-                                                <div class="product-img-action-wrap ">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}">
-                                                               
-                                                            <img class="default-img" src="{{asset('storage/'.$_productDetails->product_image)}}" alt="">
-                                                            <img class="hover-img" src="{{asset('storage/'.$_productDetails->second_image)}}" alt="">
-                                                        </a>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                     
-                                                    <span>
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}"  class="product-title"><!-- {{$_productDetails->name}} -->
-                                                         {{ \Illuminate\Support\Str::limit($_productDetails->name, $limit = 40, $end = '...') }}
-                                                        </a></span>
-                                                     
-                                                    <div class="product-price">
-                                                        <span>$ {{$_productDetails->special_price}} </span>
-                                                        <span class="old-price">$ {{$_productDetails->price}}</span>
-                                                    </div>   
-                                                    <div class="product-action-1 pt-3 show">
-                                                        <!-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                            <i class="fa-sharp fa-regular fa-eye"></i></a> -->
-                                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fa-regular fa-heart"></i></a>
-                                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="{{ route('add.to.cart', $_productDetails->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-two-1" role="tabpanel" aria-labelledby="tab-two-1">
-                                <div class="carausel-4-columns-cover arrow-center position-relative">
-                                    <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-2-arrows"></div>
-                                    <div class="carausel-4-columns carausel-arrow-center mb-3" id="carausel-4-columns-2">
-                                        @if ($product2)
-                                        @foreach($product2 as $_productDetails)
-                                            <div class="product-cart-wrap my-3 hover-up">
-                                                <div class="product-img-action-wrap ">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}">
-                                                               
-                                                            <img class="default-img" src="{{asset('storage/'.$_productDetails->product_image)}}" alt="">
-                                                            <img class="hover-img" src="{{asset('storage/'.$_productDetails->second_image)}}" alt="">
-                                                        </a>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                     
-                                                    <span>
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}"  class="product-title"><!-- {{$_productDetails->name}} -->
-                                                         {{ \Illuminate\Support\Str::limit($_productDetails->name, $limit = 40, $end = '...') }}
-                                                        </a></span>
-                                                     
-                                                    <div class="product-price">
-                                                        <span>$ {{$_productDetails->special_price}} </span>
-                                                        <span class="old-price">$ {{$_productDetails->price}}</span>
-                                                    </div>   
-                                                    <div class="product-action-1 pt-3 show">
-                                                        <!-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                            <i class="fa-sharp fa-regular fa-eye"></i></a> -->
-                                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fa-regular fa-heart"></i></a>
-                                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="{{ route('add.to.cart', $_productDetails->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-three-1" role="tabpanel" aria-labelledby="tab-three-1">
-                                <div class="carausel-4-columns-cover arrow-center position-relative">
-                                    <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-3-arrows"></div>
-                                    <div class="carausel-4-columns carausel-arrow-center mb-3" id="carausel-4-columns-3">
-                                        @if ($product3)
-                                        @foreach($product3 as $_productDetails)
-                                            <div class="product-cart-wrap my-3 hover-up">
-                                                <div class="product-img-action-wrap ">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}">
-                                                               
-                                                            <img class="default-img" src="{{asset('storage/'.$_productDetails->product_image)}}" alt="">
-                                                            <img class="hover-img" src="{{asset('storage/'.$_productDetails->second_image)}}" alt="">
-                                                        </a>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                     
-                                                    <span>
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}"  class="product-title"><!-- {{$_productDetails->name}} -->
-                                                         {{ \Illuminate\Support\Str::limit($_productDetails->name, $limit = 40, $end = '...') }}
-                                                        </a></span>
-                                                     
-                                                    <div class="product-price">
-                                                        <span>$ {{$_productDetails->special_price}} </span>
-                                                        <span class="old-price">$ {{$_productDetails->price}}</span>
-                                                    </div>   
-                                                    <div class="product-action-1 pt-3 show">
-                                                        <!-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                            <i class="fa-sharp fa-regular fa-eye"></i></a> -->
-                                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fa-regular fa-heart"></i></a>
-                                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="{{ route('add.to.cart', $_productDetails->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-four-1" role="tabpanel" aria-labelledby="tab-four-1">
-                                <div class="carausel-4-columns-cover arrow-center position-relative">
-                                    <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-4-arrows"></div>
-                                    <div class="carausel-4-columns carausel-arrow-center mb-3" id="carausel-4-columns-4">
-                                        @if ($product4)
-                                        @foreach($product4 as $_productDetails)
-                                            <div class="product-cart-wrap my-3 hover-up">
-                                                <div class="product-img-action-wrap ">
-                                                    <div class="product-img product-img-zoom">
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}">
-                                                               
-                                                            <img class="default-img" src="{{asset('storage/'.$_productDetails->product_image)}}" alt="">
-                                                            <img class="hover-img" src="{{asset('storage/'.$_productDetails->second_image)}}" alt="">
-                                                        </a>
-                                                    </div>
-                                                    
-                                                </div>
-                                                <div class="product-content-wrap">
-                                                     
-                                                    <span>
-                                                        <a href="{{ route('singleproduct', ['url' => $_productDetails->url_key]) }}"  class="product-title"><!-- {{$_productDetails->name}} -->
-                                                         {{ \Illuminate\Support\Str::limit($_productDetails->name, $limit = 40, $end = '...') }}
-                                                        </a></span>
-                                                     
-                                                    <div class="product-price">
-                                                        <span>$ {{$_productDetails->special_price}} </span>
-                                                        <span class="old-price">$ {{$_productDetails->price}}</span>
-                                                    </div>   
-                                                    <div class="product-action-1 pt-3 show">
-                                                        <!-- <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                            <i class="fa-sharp fa-regular fa-eye"></i></a> -->
-                                                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fa-regular fa-heart"></i></a>
-                                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="{{ route('add.to.cart', $_productDetails->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--MUST HAVE -->
-        <section class="Must " style="overflow-x: hidden;">
-            <div class="mx-3 py-80">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h5 class="homepage_heading">{{ $homeSection->bjp_section_title }}</h5>
-                        <p class="fs-6 mb-4">{{ $homeSection->bjp_section_tag_line }}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12 m-auto d-block py-2 must_detail">
-                    <div class="border p-0 rounded hover-up pt-0" style="background-color:#f8e7e7;">
-                        <div class="">
-                            <img src="{{ asset('storage/'.$homeSection->bjp_section_image_1) }}" alt="{{ $homeSection->bjp_section_image_1_alt }}">
-                        </div>
-                        <div class="text-center">
-                            <h3 class="pt-3">{{ $homeSection->bjp_section_image_1_title }}</h3>
-                            <h4 class="py-2">{{ $homeSection->bjp_section_image_1_name }}</h4>
-                            <div class="d-flex justify-content-start align-items-center view_detail w-100  mb-3">
-                                <a href="{{ $homeSection->bjp_section_image_1_link }}" class="d-block m-auto p-1 px-3" style="font-size: 14px;background-color: transparent;color: black;">Shop Now<i
-                                    class="fa-solid fa-angle-right ps-2"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12 m-auto d-block py-2 must_detail">
-                    <div class="border p-0 rounded hover-up pt-0" style="background-color: #e2eff5;">
-                        <div class="">
-                            <img src="{{ asset('storage/'.$homeSection->bjp_section_image_2) }}" alt="{{ $homeSection->bjp_section_image_2_alt }}">
-                        </div>
-                        <div class="text-center">
-                            <h3 class="pt-3">{{ $homeSection->bjp_section_image_2_title }}</h3>
-                            <h4 class="py-2">{{ $homeSection->bjp_section_image_2_name }}</h4>
-                            <div class="d-flex justify-content-start align-items-center view_detail w-100  mb-3">
-                                <a href="{{ $homeSection->bjp_section_image_2_link }}" class="d-block m-auto p-1 px-3" style="font-size: 14px;background-color: transparent;color: black;">Shop Now<i
-                                    class="fa-solid fa-angle-right ps-2"></i></a>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12 m-auto d-block py-2 must_detail">
-                        <div class="border p-0 rounded hover-up pt-0" style="background-color: #e0dbee;">
-                            <div class="">
-                                <img src="{{ asset('storage/'.$homeSection->bjp_section_image_3) }}" alt="{{ $homeSection->bjp_section_image_3_alt }}">
-                            </div>
-                            <div class="text-center">
-                                <h3 class="pt-3">{{ $homeSection->bjp_section_image_3_title }}</h3>
-                                <h4 class="py-2">{{ $homeSection->bjp_section_image_3_name }}</h4>
-                                <div class="d-flex justify-content-start align-items-center view_detail w-100  mb-3">
-                                    <a href="{{ $homeSection->bjp_section_image_3_link }}" class="d-block m-auto p-1 px-3" style="font-size: 14px;background-color: transparent;color: black;">Shop Now<i
-                                        class="fa-solid fa-angle-right ps-2"></i></a>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </section>
-
-        <!--  -->
-        <section class="donetion py-80">
-            <div class="mx-3">
-                <div class="row">
-                    <h3 class="homepage_heading mb-4">{{ $homeSection->bwu_section_title }}</h3>
-                    <div class="col-lg-6 py-3">
-                        <div class="row">
-                            <div class="col-lg-6 col-6 px-1">
-                                <img src="{{ asset('storage/'.$homeSection->bwu_section_image_1) }}"
-                                    class=" p-0 m-0 homepage_donation_img hover-up" alt="{{ $homeSection->bwu_section_image_1_alt }}">
-                            </div>
-                            <div class="col-lg-6 col-6 px-1">
-                                <img src="{{ asset('storage/'.$homeSection->bwu_section_image_2) }}"
-                                    class=" p-0 m-0 homepage_donation_img hover-up" alt="{{ $homeSection->bwu_section_image_2_alt }}">
-                            </div>
-                            <div class="col-lg-6 col-6 px-1">
-                                <img src="{{ asset('storage/'.$homeSection->bwu_section_image_3) }}"
-                                    class=" p-0 m-0 homepage_donation_img hover-up" alt="{{ $homeSection->bwu_section_image_3_alt }}">
-                            </div>
-                            <div class="col-lg-6 col-6 px-1">
-                                <img src="{{ asset('storage/'.$homeSection->bwu_section_image_4) }}"
-                                    class=" p-0 m-0 homepage_donation_img hover-up" alt="{{ $homeSection->bwu_section_image_4_alt }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 py-3 d-flex flex-column align-content-center justify-content-center ps-lg-4">
-                        <h3 class="title_shop fs-1">{{ $homeSection->bwu_section_sub_title }}</h3>
-                        <p class="para_shop py-4">
-                            {{ $homeSection->bwu_section_content }}
-                        </p>
-                        <div class=" d-flex justify-content-sm-start align-items-center view_detail hover-up">
-                            <a href="{{ $homeSection->bwu_section_btn_link }}" class="fs-6">{{ $homeSection->bwu_section_btn_title }}<i
-                                    class="fa-solid fa-angle-right ps-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Blogs -->
-        <div class="py-80 mx-3">
-            <h1 class="homepage_heading text-start">RECENT BLOGS</h1>
-            <div class="row">
-                @if($lastblog)
-                @foreach($lastblog as $_items)
-      
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                  <a href="{{ route('singleblogs', ['id' => $_items->id]) }}">
-                    <div class="blog-card m-1 my-3">
-                    <div class="card-banner">
-                      <p class="category-tag popular">Real Stone</p>
-                      <img class="banner-img" src="{{ asset('storage/lastblog_image/'.$_items->lastblog_image) }}" alt='{{ $_items->alt }}'>
-                    </div>
-                    <div class="card-body">
-                      <!-- <p class="blog-hashtag">#Food #Pizza</p> -->
-                      <h2 class="blog-title">{{ $_items->banner_heading }}</h2>
-                      <p class="blog-description">{!! Str::limit($_items->description, 100) !!}</p>
-                      
-                      <div class="card-profile">
-                        <img class="profile-img" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpYJQKSoM7S75P_KMRtQHqAAIPh133CSxByw&usqp=CAU' alt=''>
-                        <div class="card-profile-info">
-                          <h3 class="profile-name">{{ $_items->author }}</h3>
-                          <!-- <p class="profile-followers">5.2k followers</p> -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-              
-              @endforeach
-              @endif
-            </div>
-        </div>
-
-        <!-- blogs Slider -->
-         
-        <!-- Image -->
-        <section class="py-80">
-            <div class="mx-3">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="homepage_heading mb-4 uppercase">Customer Gallery</h2>
-                    </div>
-                </div>
-                <div class="row image_show">
-                    @if($gellary) 
-                    @foreach ($gellary as $gallary) 
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 m-auto d-block image_show_hover hover-up">
-                        <img src="{{ asset('storage/'.$gallary->image) }}" style="width: 100%;height: 100%;" alt="{{ $gallary->alt }}">
-                    </div>
-                    @endforeach
-                    @endif
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex justify-content-center align-items-center pt-3 view_detail w-100 hover-up">
-                            <a href="javascript:void(0)" class="d-block m-auto fs-6">View More<i
-                                    class="fa-solid fa-angle-right ps-2"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        
-        
-        
-        
-        
-        <!-- Contant -->
-        <div class="px-3 pt-80" id="myDiv">
-            <h3 class="homepage_heading mb-4">More With us</h3>
-            <h2 style="line-height: 34px;">
-                Discover Timeless Elegance with Huzurr: Your final Destination for Delicate Jewelry</h2>
-            <p class="fs-6 my-2">We at Huzurr think that jewelry serves as more than just a
-                design piece. We see it as a reflection of your distinct personality and sense of style. It is an
-                enduring expression of beauty and a celebration of unique moments. Huzurr cordially welcomes you to
-                embark with us on an adventure where creativity and style collide and each piece of jewelry carries a
-                narrative. Enter the captivating world of Huzurr, where jewelry is a poetic representation of your
-                beauty and sense of style. For you, every item in our jewelry collection will serve as more than just an
-                accessory. Every jewelry item is an exquisite work of art, a masterfully crafted canvas on which the
-                true meaning of exquisite jewelry is expressed. Purchase from us to add a wide selection of exquisite
-                jewelry to your jewelry collection..</p>
-
-            <h2 style="line-height: 34px;margin-top: 2.5rem;">What We Are</h2>
-            <p class="fs-6 ">In addition to being an online jewelry retailer, Huzurr is a sophisticated and
-                fashionable haven. The exquisite jewelry in our collection is a display of your options. We are
-                inextricably linked by an unwavering dedication to the highest standards of quality and an unbridled
-                passion for beautiful design. Huzurr presents a line of fashionable jewelry that is both timeless and
-                elegant, hand-picked from a variety of designs. Every item represents our commitment to quality
-                craftsmanship, guaranteeing that each one is more than just an accessory but rather a part of your
-                exquisite ensemble for that special occasion. </p>
-
-            <h2 style="line-height: 34px;margin-top: 2.5rem;">Our Product Range</h2>
-
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Rings</h3>
-            <p class="fs-6">Check out our commitment and style in the range of our ring collection. Here
-                each piece is a chapter in the story of love and style. From dazzling engagement rings that symbolize
-                eternal commitment to statement pieces that express Uniqueness, our collection is a celebration of the
-                profound emotions that can be expressed with beautiful rings. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Necklaces</h3>
-
-            <p class="fs-6">A symphony of elegance and glamor that exceeds the ordinary to class. Each of
-                our necklace is a masterpiece because effortlessly blending with a touch of charm. Whether you seek a
-                subtle accent for everyday wear or a show-stopping piece for special occasions, our selection ensures
-                that you find a piece that suits your distinct sense of style.</p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Earrings</h3>
-
-            <p class="fs-6">Harmonious Blends of Classic and Contemporary Immerse yourself in the artistry
-                of our earring collection, In our earing collection classic meets contemporary in a harmonious style.
-                From timeless studs that show elegance to modern designs that make a bold statement, our earrings
-                provide a diverse look on different occasions. Raise your look with each meticulously crafted earring
-                that reflects a perfect balance of tradition and modernity. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Bracelets</h3>
-
-            <p class="fs-6">In our stunning range of bracelets each piece is a masterpiece that is crafted
-                with perfection. Whether you prefer the delicate sparkle of gemstones or the piece of precious metals,
-                our bracelets are designed to complement your style. </p>
-
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Birthstones</h3>
-            <p class="fs-6">With our 100% genuine birthstones, embark on a mystical adventure. Every
-                birthstone is a special illustration of marvels, containing the energy and meaning specific to its birth
-                month. Discover the assortment of birthstones, where each gem is a carefully chosen cosmic connection
-                that speaks to your uniqueness rather than just a piece of jewelry. </p>
-
-            <h2 style="line-height: 34px;margin-top: 2.5rem;">What we offer </h2>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">100% Original Products</h3>
-            <p class="fs-6">Step into the world of Huzurr, where authenticity is not just a claim but a
-                sparkling reality. Our pride lies in our coveted birthstones and each one is a genuine and unique piece
-                with the certification of originality. From the ethereal glow of a moonstone to the fiery brilliance of
-                a ruby, every gem tells a story. Revel in the assurance that when you choose Huzurr, you choose
-                originality, you choose a promise to bring extraordinary to every piece in our collection.</p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Quality Assurance</h3>
-            <p class="fs-6">At Huzurr, we don't just promise quality, we embody it. Our commitment to
-                excellence is non-negotiable. Each jewellery piece is a result of meticulous craftsmanship and undergoes
-                a series of rigorous quality checks. From the selection of materials to the final polish, we leave no
-                stone unturned to ensure that every detail meets and exceeds the highest standards.</p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Return Policy</h3>
-            <p class="fs-6">Satisfaction is important for every customer, at Huzurr, and we stand behind
-                every piece we offer. Explore our hassle-free return policy, developed with our confidence to provide
-                the best product. We understand that sometimes choices may change, and we want you to shop with peace of
-                mind. If, for any reason, you're not completely satisfied with your purchase, our straightforward return
-                process ensures that you can return or exchange your jewelry effortlessly. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Our global presence </h3>
-            <p class="fs-6">We at Huzurr have a huge impact that crosses border sales. as we expertly cross
-                international boundaries to provide a line of jewelry to every location on the planet. Beyond national
-                borders, we are devoted to having a global presence. It is the consequence of our steadfast commitment
-                to transforming style into a globally accessible luxury. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Why choose us </h3>
-            <p class="fs-6">At Huzurr, every piece made by our master craftsmen is an expression of art, not
-                just a skill. Immerse yourself in a realm where jewelry that has been expertly crafted can fulfill your
-                dreams. Every item conveys a tale of commitment, accuracy, and a desire to transform emotions into
-                wearable works of art. Each piece of jewelry that our artisans create is a wearable work of art because
-                every detail is meticulously thought out and expertly crafted. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Elevate Your Jewelry Experience</h3>
-            <p class="fs-6">Huzurr invites you to elevate your jewelry experience to new heights. Immerse
-                yourself in a world where every piece is more than an accessory. From the initial concept to the final
-                creation, our jewelry embodies a commitment to excellence that stands the test of time. Whether you're
-                celebrating a special moment or expressing your individuality, Huzurr is your partner in crafting
-                memories and making a statement with jewelry that resonates with the essence of you. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Endless Choices</h3>
-            <p class="fs-6">Discover a universe of choices at Huzurr, where your individuality takes the
-                center of focus. From timeless classics that exude sophistication to modern creations that push the
-                boundaries of design, our diverse collection caters to every taste and occasion. Whether you seek the
-                understated elegance of traditional designs or the bold allure of contemporary pieces, Huzurr offers an
-                extensive range that empowers you to curate a jewelry collection as unique as you are. </p>
-            <h3 style="line-height: 34px;margin-top: 2.5rem;">Global Trust</h3>
-            <p class="fs-6">Become part of a global community that relies on Huzurr for more than just
-                jewelry. Our foundation is built on trust, authenticity, and an unwavering commitment to quality.
-                Joining hands with us means embracing a brand that prioritizes the authenticity of its products,
-                ensuring that each piece is a genuine representation of beauty and craftsmanship. </p>
-
-            <!-- <button >Toggle Height</button> -->
-        </div>
-        <div class="py-80 pt-0 d-flex justify-content-center my-4 align-items-center view_detail w-100 hover-up">
-            <a href="javascript:void(0)" id="readMoreBtn" class="d-block m-auto fs-6" onclick="toggleHeight()">Read
-                More<i class="fa-solid fa-angle-right ps-2"></i></a>
-        </div>
-        <script>
-            function toggleHeight() {
-                var myDiv = document.getElementById('myDiv');
-                var btn = document.getElementById('readMoreBtn');
-
-                myDiv.classList.toggle('expanded');
-
-                if (myDiv.classList.contains('expanded')) {
-                    btn.innerText = 'Read Less';
-                } else {
-                    btn.innerText = 'Read More';
-                }
-            }
-        </script>
-        <!-- Contant ENd -->
-
-        <!-- Faq -->
-        <section class="faq py-80" style="background-image: url('assets/images/background_image_starts.jpg');">
-            <div class="container">
-                <h2 class="homepage_heading mb-4">Frequently Asked Questions</h2>
-                <div class="row justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                        <div class="faq_section">
-                            <div class="accordion_faq">
-                                <div class="accordion-item">
-                                    <button id="accordion-button-1" aria-expanded="false">
-                                        <span class="accordion-title fs-6">Why is the moon sometimes out during the
-                                            day?</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo
-                                            duis ut.
-                                            Ut tortor pretium viverra suspendisse potenti.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-2" aria-expanded="false">
-                                        <span class="accordion-title fs-6">Why is the sky blue?</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo
-                                            duis ut.
-                                            Ut tortor pretium viverra suspendisse potenti.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-3" aria-expanded="false">
-                                        <span class="accordion-title fs-6">Will we ever discover aliens?</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo
-                                            duis ut.
-                                            Ut tortor pretium viverra suspendisse potenti.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-4" aria-expanded="false">
-                                        <span class="accordion-title fs-6">How much does the Earth weigh?</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo
-                                            duis ut.
-                                            Ut tortor pretium viverra suspendisse potenti.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-5" aria-expanded="false">
-                                        <span class="accordion-title fs-6">How do airplanes stay up?</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor
-                                            incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo
-                                            duis ut.
-                                            Ut tortor pretium viverra suspendisse potenti.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- faq js -->
-        <script>
-            const items = document.querySelectorAll('.accordion_faq button');
-
-            function toggleAccordion() {
-                const itemToggle = this.getAttribute('aria-expanded');
-
-                for (i = 0; i < items.length; i++) {
-                    items[i].setAttribute('aria-expanded', 'false');
-                }
-
-                if (itemToggle == 'false') {
-                    this.setAttribute('aria-expanded', 'true');
-                }
-            }
-
-            items.forEach((item) => item.addEventListener('click', toggleAccordion));
-        </script>
-    </main> --}}
 
     <main>
             
@@ -1109,82 +303,22 @@
             /******************************* End Desktop Category Slider **********************************/
         </style>
         <div class="sub-category-mobile-slider-block" style="margin: 40px auto 0;max-width: 1200px;">
-            <ul class="p-0 m-0"><!--<li>
+            <div class="steps-heading">
+                <h2>Custom With Jewcus</h2>
+                <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, officiis.</p>
+            </div>
+            <ul class="p-0 m-0">
+        <!--<li>
             <figure><img id="mobile_focused_category_slider_bangle" title="1% Instant discount on all UPI transaction" alt="Malabar Gold &amp; Diamonds' 1% Instant discount on all UPI transaction" src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/Offer.jpg" /></figure>
             <p class="sub-cat-title">UPI Offer</p>
+            </li> -->
+            <li onclick="location.href='https://www.malabargoldanddiamonds.com/diamond-jewellery/ring.html';">
+                <img id="mobile_focused_category_slider_bangle" title="Diamond Rings for Women"
+                    alt="Diamond Rings for Women"
+                    src="{{ asset('storage/' . $homeSection->section_1_images['image']) }}">
+                <p class="sub-cat-title">{{ $homeSection->section_4_heading }}</p>
             </li>
-            -->
-                {{-- <li onclick="location.href='https://www.malabargoldanddiamonds.com/gifts.html?stock_status=539';">
-                    <img id="mobile_focused_category_slider_fast_shipping" title="Fast Shipping"
-                        alt="Malabar Gold &amp; Diamonds' Fast Shipping Jewellery"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2022/04_april/mobilesubcategory/new/fast-ships-2.gif">
-                    <p class="sub-cat-title">Fast Ships</p>
-                </li> --}}
-                <li
-                    onclick="location.href='https://www.malabargoldanddiamonds.com/gifts/recommendations/shop-by-recommendations/best-sellers.html';">
-                    <img id="mobile_focused_category_slider_bangle" title="Best Sellers" alt="New Arrivals"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/05_may/india-homepage/focus-block/best-seller.jpg">
-                    <p class="sub-cat-title">Best Sellers</p>
-                </li>
-                <li
-                    onclick="location.href='https://www.malabargoldanddiamonds.com/gifts/recommendations/shop-by-recommendations/best-sellers.html';">
-                    <img id="mobile_focused_category_slider_bangle" title="Best Sellers" alt="New Arrivals"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/05_may/india-homepage/focus-block/best-seller.jpg">
-                    <p class="sub-cat-title">New Arrivals</p>
-                </li>
-                {{-- <li onclick="location.href='https://www.malabargoldanddiamonds.com/diamond-jewellery/ring.html';">
-                    <img id="mobile_focused_category_slider_bangle" title="Diamond Rings for Women"
-                        alt="Diamond Rings for Women"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/solitare.jpg">
-                    <p class="sub-cat-title">Ring</p>
-                </li>
-                <li
-                    onclick="location.href='https://www.malabargoldanddiamonds.com/gold-jewellery/accessories/style/anklet.html';">
-                    <img id="mobile_focused_category_slider_bangle" title="Gold Anklets for Women"
-                        alt="Gold Anklets for Women"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/Anklet.jpg">
-                    <p class="sub-cat-title">Anklet</p>
-                </li>
-                <li onclick="location.href='https://www.malabargoldanddiamonds.com/gifts.html?product_type=898';">
-                    <img id="mobile_focused_category_slider_bangle" title="Bangle" alt="Bangle"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2022/04_april/mobilesubcategory/new/Bangle-1.jpg">
-                    <p class="sub-cat-title">Bangle</p>
-                </li>
-                <li
-                    onclick="location.href='https://www.malabargoldanddiamonds.com/diamond-jewellery/earring.html';">
-                    <img id="mobile_focused_category_slider_earring" title="Earring" alt="Earring"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2022/04_april/mobilesubcategory/new/Offer.jpg">
-                    <p class="sub-cat-title">Earring</p>
-                </li>
-                <li onclick="location.href='https://www.malabargoldanddiamonds.com/gifts.html?product_type=901';">
-                    <img id="mobile_focused_category_slider_mangalsutra" title="Mangalsutra" alt="Mangalsutra"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/Mangalsutra.jpg">
-                    <p class="sub-cat-title">Mangalsutra</p>
-                </li>
-                <li onclick="location.href='https://www.malabargoldanddiamonds.com/platinum-jewellery.html';"><img
-                        id="mobile_focused_category_slider_platinum" title="Platinum" alt="Platinum"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2022/04_april/mobilesubcategory/new/Platinum.jpg">
-                    <p class="sub-cat-title">Platinum</p>
-                </li>
-                <li onclick="location.href='https://www.malabargoldanddiamonds.com/gold-jewellery/chain.html';"><img
-                        id="mobile_focused_category_slider_chain" title="Gold Chains for Women"
-                        alt="Gold Chains for Women"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2022/04_april/mobilesubcategory/new/Chain-1.jpg">
-                    <p class="sub-cat-title">Gold Chain</p>
-                </li>
-                <li onclick="location.href='https://www.malabargoldanddiamonds.com/platinum-jewellery.html?our_collection=3204';">
-                    <img id="mobile_focused_category_slider_couple_band" title="Couple Band" alt="Couple Band"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2022/04_april/mobilesubcategory/new/band.jpg">
-                    <p class="sub-cat-title">Couple Band</p>
-                </li> --}}
-                @foreach ($formatTreeCategory as $category) 
-                <li onclick="location.href='https://www.malabargoldanddiamonds.com/diamond-jewellery/ring.html';">
-                    <img id="mobile_focused_category_slider_bangle" title="Diamond Rings for Women"
-                        alt="Diamond Rings for Women"
-                        src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/solitare.jpg">
-                    <p class="sub-cat-title">{{ $category->name }}</p>
-                </li>
-                @endforeach
+            
             </ul>
         </div>
         <section class="common-gap pt-4">
@@ -1232,143 +366,25 @@
                     <div class="hidden-container">
                         <div class="swiper jewelry">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
+                                @foreach ($products as $product)
+                                    <div class="swiper-slide">
+                                        <div class="shadow-box text-center">
+                                            <a href="#">
+                                                <img src="{{ asset('storage/' . $product->image) }}" alt="fsda">
+                                                <h6 class="product_title_h">{{ $product->name }}</h6> 
+                                                <span class="product_price_h">${{ $product->price_in_india }}</span>
                                             </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
+                                            <div class="text-end">
+                                                <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
+                                                    <i class="bi bi-heart text-light"></i>
+                                                </a>
+                                                <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
+                                                    <i class="bi bi-cart3 text-light"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
 
                             </div>
                             <div class="slider-arrows">
@@ -1388,16 +404,14 @@
             <div class="section-container">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-md-6 py-2">
-                        <img src="images/ring-banner.png" alt="">
+                        <img src="{{ asset('storage/'.$homeSection->section_4_image) }}" alt="">
                     </div>
                     <div class="col-md-5 pt-2 pt-md-3 pb-md-5 pb-2">
-                        <h3 class="mb-md-3 mb-1">Lorem ipsum dolor sit.</h3>
-                        <p class="mb-md-4 mb-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, impedit?
-                            Inventore tempore quos porro aspernatur voluptatum quidem saepe eum? Reiciendis
-                            asperiores labore enim sed doloremque id ullam nulla illo tempora!</p>
+                        <h3 class="mb-md-3 mb-1">{{ $homeSection->section_4_heading }}</h3>
+                        <p class="mb-md-4 mb-1">{{ $homeSection->section_4_sub_heading }}</p>
 
                         <div class="btn-wrap pt-1 pt-md-3">
-                            <a href="#" class="white-btn fw-bold">Shop Now</a>
+                            <a href="#" class="white-btn fw-bold">{{ $homeSection->section_4_btn_text }}</a>
                         </div>
 
                     </div>
@@ -1415,120 +429,27 @@
                     <div class="hidden-container">
                         <div class="swiper jewelry">
                             <div class="swiper-wrapper">
-                                <!-- <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="product_title_h">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
+
+                                @foreach ($products as $product)
+                                    <div class="swiper-slide">
+                                        <div class="shadow-box text-center">
+                                            <a href="#">
+                                                <img src="{{ asset('storage/' . $product->image) }}" alt="fsda">
+                                                <h6 class="product_title_h">{{ $product->name }}</h6> 
+                                                <span class="product_price_h">${{ $product->price_in_india }}</span>
+                                            </a>
+                                            <div class="text-end">
+                                                <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
+                                                    <i class="bi bi-heart text-light"></i>
+                                                </a>
+                                                <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
+                                                    <i class="bi bi-cart3 text-light"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div> -->
+                                @endforeach
                                 
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box text-center">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt="fsda">
-                                            <h6 class="product_title_h">Diamond Ring</h6> 
-                                            <span class="product_price_h">$28</span>
-                                        </a>
-                                        <div class="text-end">
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                <i class="bi bi-heart text-light"></i>
-                                            </a>
-                                            <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                <i class="bi bi-cart3 text-light"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                                 
                             </div>
                             <div class="slider-arrows">
@@ -1549,120 +470,13 @@
         </section>
         
         <section class="common-gap">
-            <div class="section-container section-type-Explore-Diamonds">
-                <h2 class="sec-heading">Explore Diamonds</h2>
-                <p class="sec-desc">We don't play favorites, but these
-                    clearly have a huge fan base.</p>
-
-                <div class="jewelry-wrap">
-                    <div class="hidden-container">
-                        <div class="swiper jewelry">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/svg.png" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/svg.png" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/diamond-ring.svg" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/diamond-ring.svg" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/svg.png" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/diamond-ring.svg" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/svg.png" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/svg.png" alt>
-                                            <h3 class="diamond-heading text-center">Dianmond</h3>
-
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="slider-arrows">
-                                <div class="swiper-button-prev swiper-btn"></div>
-                                <div class="swiper-button-next swiper-btn"></div>
-                            </div>
-                        </div>
-                        <div class="btn-wraper">
-                            <a class="view-all" href="#">View All <span class="value-change">Jewelry</span> </a>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-        <section class="common-gap">
             <div class="section-container section-type-opal">
                 <h2 class="sec-heading">Gifting Made Super Easy</h2>
                 <p class="sec-desc">For grand gestures or just-because, we
                     have them all right here.</p>
                 <div class="tab-list-clicker flex-column flex-md-row gap-2">
                     <ul class="tab-list-inner tabs">
+                        
                         <li class="list-type active tab-link current" data-tab="tab-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none">
@@ -1808,14 +622,14 @@
                 </div>
                 <div id="tab-1" class="tab-content current">
                     <div class="grid-box-wrap">
+                        @foreach ($products as $product )
                         <div class="grid-box-item">
                             <a href="#" class="img">
                                 <div class="shadow-box">
                                     <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
+                                        <img src="{{ asset('storage/'.$product->image) }}" alt>
+                                        <h6 class="product_title_h">{{ $product->name }}</h6>
+                                        <span class="product_price_h">${{ $product->price_in_india  }}</span> 
                                     </a>
                                     <div class="text-end">
                                         <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
@@ -1828,100 +642,17 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div> -->
-
+                        @endforeach
                     </div>
                 </div>
                 <div id="tab-2" class="tab-content">
                     <div class="grid-box-wrap">
+                        @foreach ($products as $product )
                         <div class="grid-box-item">
                             <a href="#" class="img">
                                 <div class="shadow-box">
                                     <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
+                                        <img src="./images/gold-ring.webp" alt>
                                         <h6 class="product_title_h">Blue Sapphire
                                             Teardrop Pendant with Diamond</h6>
                                         <span class="product_price_h">$169</span> 
@@ -1937,100 +668,17 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div> -->
-
+                        @endforeach
                     </div>
                 </div>
                 <div id="tab-3" class="tab-content">
                     <div class="grid-box-wrap">
+                        @foreach ($products as $product )
                         <div class="grid-box-item">
                             <a href="#" class="img">
                                 <div class="shadow-box">
                                     <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
+                                        <img src="./images/gold-ring.webp" alt>
                                         <h6 class="product_title_h">Blue Sapphire
                                             Teardrop Pendant with Diamond</h6>
                                         <span class="product_price_h">$169</span> 
@@ -2046,367 +694,37 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div> -->
-
+                        @endforeach
                     </div>
                 </div>
                 <div id="tab-4" class="tab-content">
                     <div class="grid-box-wrap">
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/grid-cat2.webp" alt>
-                                        <h6 class="product_title_h">Blue Sapphire
-                                            Teardrop Pendant with Diamond</h6>
-                                        <span class="product_price_h">$169</span> 
-                                    </a>
-                                    <div class="text-end">
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                            <i class="bi bi-heart text-light"></i>
-                                        </a>
-                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                            <i class="bi bi-cart3 text-light"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- <div class="grid-box-item">
-                            <a href="#" class="img">
-                                <div class="shadow-box">
-                                    <a href="#">
-                                        <img src="./images/gold-ring.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
-                                    </a>
-                                </div>
-                            </a>
-                        </div>
+                        @foreach ($products as $product )
                         <div class="grid-box-item">
                             <a href="#" class="img">
                                 <div class="shadow-box">
                                     <a href="#">
                                         <img src="./images/gold-ring.webp" alt>
-                                        <p class="font-13 mb-0">Blue Sapphire
-                                            Teardrop Pendant with Diamond</p>
-                                        <span>$169</span> 
+                                        <h6 class="product_title_h">Blue Sapphire
+                                            Teardrop Pendant with Diamond</h6>
+                                        <span class="product_price_h">$169</span> 
                                     </a>
+                                    <div class="text-end">
+                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
+                                            <i class="bi bi-heart text-light"></i>
+                                        </a>
+                                        <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
+                                            <i class="bi bi-cart3 text-light"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </a>
-                        </div> -->
-
+                        </div>
+                        @endforeach
                     </div>
                 </div>
-
             </div>
         </section>
-        <!-- <section class="common-gap">
-            <div class="section-container section-type-gif">
-                <h2 class="sec-heading">An Insider View</h2>
-                <div class="grid-box-wrap">
-                    <div class="grid-box-item text-center">
-                        <img src="./images/gif-1.gif" alt>
-                        <p class="mb-0">Ethical Sourcing</p>
-                        <p class="font-13 desc-limit">Where stones start
-                            means everything. We source all our gemstones
-                            from those who are uncompromising when it comes
-                            to quality and sustainability.</p>
-                    </div>
-                    <div class="grid-box-item text-center">
-                        <img src="./images/gif-2.gif" alt>
-                        <p class="mb-0">Ethical Sourcing</p>
-                        <p class="font-13 desc-limit">Where stones start
-                            means everything. We source all our gemstones
-                            from those who are uncompromising when it comes
-                            to quality and sustainability.</p>
-                    </div>
-                    <div class="grid-box-item text-center">
-                        <img src="./images/gif-3.gif" alt>
-                        <p class="mb-0">Ethical Sourcing</p>
-                        <p class="font-13 desc-limit">Where stones start
-                            means everything. We source all our gemstones
-                            from those who are uncompromising when it comes
-                            to quality and sustainability.</p>
-                    </div>
-                    <div class="grid-box-item text-center">
-                        <img src="./images/gif-4.gif" alt>
-                        <p class="mb-0">Ethical Sourcing</p>
-                        <p class="font-13 desc-limit">Where stones start
-                            means everything. We source all our gemstones
-                            from those who are uncompromising when it comes
-                            to quality and sustainability.</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </section> -->
-        <!-- <section class="common-gap">
-            <div class="section-container section-type-Explore-Diamonds">
-                <h2 class="sec-heading">Please Look Some Special</h2>
-                <p class="sec-desc">We don't play favorites, but these
-                    clearly have a huge fan base.</p>
-
-                <div class="jewelry-wrap">
-                    <div class="hidden-container">
-                        <div class="swiper jewelry">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="shadow-box">
-                                        <a href="#">
-                                            <img src="./images/gold-ring.webp" alt>
-                                            <p class="font-13 mb-0">Blue
-                                                Sapphire Teardrop Pendant
-                                                with Diamond</p>
-                                            <span>$169</span> 
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="slider-arrows">
-                                <div class="swiper-button-prev swiper-btn"></div>
-                                <div class="swiper-button-next swiper-btn"></div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </div>
-
-        </section> -->
         <section class="common-gap">
             <div class="three-slider-section light_bg_section">
                 <div class="slider-wrap-main slider-two-wrap text-center">
@@ -2417,69 +735,24 @@
                             <div class="hidden-container">
                                 <div class="swiper seemore seemore1" style="padding: 30px 20px;">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
+                                        {{-- @foreach ( as )
+                                            <div class="swiper-slide border rounded py-3 counter-box">
+                                                <div class="item">
+                                                    <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
+                                                </div>
+                                                <!-- <img src="./images/flag1.png" alt> -->
+                                                <h3 class="mt-md-3 mb-1">United States</h3>
+                                                <p>500+ Resellers</p>
                                             </div>
-                                            <!-- <img src="./images/flag1.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
+                                        @endforeach --}}
+                                        
                                         <div class="swiper-slide  border rounded py-3 counter-box">
                                             <div class="item">
                                                 <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
                                             </div>
                                             <!-- <img src="./images/flag2.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
-                                            </div>
-                                            <!-- <img src="./images/flag3.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
-                                            </div>
-                                            <!-- <img src="./images/flag4.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
-                                            </div>
-                                            <!-- <img src="./images/flag5.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
-                                            </div>
-                                            <!-- <img src="./images/flag2.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
-                                            </div>
-                                            <!-- <img src="./images/flag4.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
-                                        </div>
-                                        <div class="swiper-slide border rounded py-3 counter-box">
-                                            <div class="item">
-                                                <h1 class="count fs-1 fw-bold" data-number="500">+</h1>
-                                            </div>
-                                            <!-- <img src="./images/flag4.png" alt> -->
-                                            <h3 class="mt-md-3 mb-1">United States</h3>
-                                            <p>500+ Resellers</p>
+                                            <h3 class="mt-md-3 mb-1">{{ $homeSection->section_8_heading }}</h3>
+                                            <p>{{ $homeSection->section_8_sub_heading }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -2487,66 +760,9 @@
                         </div>
                     </div>
                 </div>   
-                <!-- <div class="slider-wrap-main mt-md-5 mt-3 slider-one-wrap text-center">
-                    <h2 class="fs-1 mb-3">Best Rated Jewelry Store Worldwide</h2>
-                    <h4 class="fw-light">Huzurr Worldwide stands out as a premier jewelry destination, earning top-notch reviews across Google, Trustpilot, Bark, and Etsy.
-                        Renowned for its exquisite craftsmanship and timeless designs, customers consistently praise Huzurr's unparalleled quality and exceptional
-                        customer service. With a global presence, this jewelry store has garnered widespread acclaim, making it a trusted choice for those seeking
-                        elegant, enduring pieces. Explore Huzurr Worldwide for a world-class shopping experience, where every piece reflects a commitment to
-                        excellence and beauty.
-                        </h4>
-                    <div class="slider-reviews-wrap mb-3">
-                        <div class="see-all-slider-wrap">
-                            <div class="hidden-container">
-                                <div class="swiper seemore seemore2 review-section-photos">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <img src="./images/review-1.png" alt>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="./images/review-2.png" alt>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="./images/review-3.png" alt>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="./images/review-4.png" alt>
-                                        </div>
-                                       
-                                    
-                                       
-                                    </div>
-    
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>       -->
-              
             </div>
         </section>
-        <!-- <section class="common-gap">
-            <div class="section-container section-type-hand-work">
-                <div class="row align-items-center justify-content-between flex-row-reverse">
-                    <div class="col-md-5 pb-md-5 pb-3">
-                        <h2 class="mb-md-3 mb-2">Lorem ipsum dolor sit.</h2>
-                        <p class="mb-md-4 mb-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, impedit?
-                            Inventore tempore quos porro aspernatur voluptatum quidem saepe eum? Reiciendis
-                            asperiores labore enim sed doloremque id ullam nulla illo tempora!</p>
-
-                        <div class="btn-wrap pt-md-3 pt-2">
-                            <a href="#" class="black-btn">Read More</a>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <img src="./images/ring-craft-work.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
+        @if(isset($lastblogs) && count($lastblogs) > 0)
         <section class="common-gap">
             <div class="section-container section-type-edit-list">
                 <h2 class="sec-heading">Our Lartest Blogs</h2>
@@ -2556,135 +772,24 @@
                     <div class="hidden-container">
                         <div class="swiper blog">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">
-                                        <div class="card-box">
-                                            <img src="./images/log-1.jpg" alt>
-                                            <span class="card-title">Fine
-                                                Jewelry Care: 7 Mistakes You
-                                                Need To Stop Making Now!</span>
-                                            <span class="blog-date">
-                                                25th July, 2023
-                                            </span>
-                                            <button class="read-more">
-                                                Read More <i class="bi bi-arrow-right"></i>
-                                            </button>
-                                        </div>
-                                    </a>
-                                </div>
-
+                                @foreach ($lastblogs as $blog)
+                                    <div class="swiper-slide">
+                                        <a href="#">
+                                            <div class="card-box">
+                                                <img src="./images/log-1.jpg" alt>
+                                                <span class="card-title">Fine
+                                                    Jewelry Care: 7 Mistakes You
+                                                    Need To Stop Making Now!</span>
+                                                <span class="blog-date">
+                                                    25th July, 2023
+                                                </span>
+                                                <button class="read-more">
+                                                    Read More <i class="bi bi-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
 
                         </div>
@@ -2695,392 +800,34 @@
             </div>
 
         </section>
+        @endif
         <section class="section-container section-type-tranding-list read_more_content_section text-center">
             <div class="">
                 <h2 class="sec-heading mt-4">MORE WITH US</h2>
-                <p id="myDiv">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus error pariatur at sequi magni magnam harum explicabo optio rerum amet beatae, repudiandae ipsa suscipit eaque dolorem nisi aperiam excepturi reprehenderit est eius saepe officiis dolorum! Id, vero. Non tempore quod numquam, nostrum iusto porro, similique voluptate quis sequi delectus, asperiores qui quas quam earum itaque animi debitis magni accusamus repellat. Ducimus deleniti molestias optio soluta ratione est fugit, quas aut iure minima, tempore possimus illo! Perferendis vitae nihil, animi sint praesentium commodi quod reiciendis. Quasi alias earum repellat a impedit, architecto cumque in ad illum consequuntur minus soluta fuga labore tenetur unde magni quibusdam modi ab, veniam maxime, dolore id blanditiis quo similique. Blanditiis pariatur commodi aperiam eos nihil magni officiis autem nemo quaerat facere. Quae ut ratione quidem? Similique, nisi suscipit ea necessitatibus architecto voluptatum. Perspiciatis libero consectetur inventore officia, repudiandae consequuntur earum ipsa adipisci dicta. Ipsum, tempora! Quas magnam, voluptate nam numquam iste aliquid minus culpa officia, odit quibusdam corporis! Quibusdam sed nihil, asperiores magnam natus provident nemo nulla iusto sint adipisci. Sapiente perspiciatis soluta ex quam, nostrum ipsa earum unde optio sint eius iste dicta omnis asperiores modi, natus enim placeat labore, laboriosam dolorum ducimus dolor. Quas, doloribus nam quae alias vero expedita, similique voluptatem excepturi temporibus quaerat vel, saepe et dicta eligendi quam minus facilis! Alias placeat voluptatibus beatae quidem consectetur optio similique deleniti est assumenda exercitationem tempora fuga, maiores debitis, sequi nemo magni totam obcaecati! Omnis asperiores eos, ut quia non est ullam repellendus id autem repudiandae aut, tempora placeat vero, quae sequi mollitia nihil impedit quibusdam sint. Deleniti iusto dignissimos et iure atque incidunt a. Quos laborum minus consectetur reiciendis possimus voluptates eveniet laudantium? Labore dicta animi, aut nobis vitae harum maxime itaque nulla accusantium autem fugiat doloribus vel! Debitis, eum eos? Sint debitis aliquid similique aperiam doloremque neque eveniet dolores soluta nisi architecto, ea minima. Officiis quaerat ut perferendis facilis labore, quia animi obcaecati natus aut, suscipit, molestiae quisquam provident! Praesentium autem cupiditate exercitationem atque porro harum, inventore, tempore aliquam doloribus ipsam dolorem sed voluptatibus, et fugit quisquam qui non nostrum vitae dolore! Animi pariatur est quae ipsa, inventore illo ratione impedit sit eum nesciunt id sed, veritatis quasi, distinctio sint earum ex dolores ab unde magnam! Velit molestias autem maiores harum quisquam explicabo et eum labore facere nemo. Dolores sunt maiores sapiente? Quia iusto debitis dolorum mollitia commodi. Est, sint molestias exercitationem porro maiores nihil pariatur tempora corporis modi error adipisci laborum facere nemo, debitis quis doloremque cumque aspernatur. Voluptate illum odio eaque nam molestiae, tempora aliquid aspernatur quod iusto ducimus corrupti iure hic impedit? Neque quaerat amet ullam corporis eos assumenda sit commodi ut ipsam aliquam inventore doloribus id nihil in hic officia rerum maxime, quam tempore accusantium, laboriosam esse ducimus asperiores. Eveniet rerum inventore officiis soluta cupiditate perferendis, fuga quidem blanditiis facilis quia necessitatibus cum dicta placeat esse aut eius quod repellat accusantium ut. Ab modi labore laudantium quo, officiis molestiae illo, vero quidem odio nostrum impedit iure cumque eum voluptates, commodi laborum repellendus! Hic, facere exercitationem sequi aliquam itaque enim laborum recusandae labore officia dignissimos. Quo nisi repellendus excepturi aspernatur vitae earum, voluptatem ipsum rerum quidem eum accusantium, voluptas qui voluptates eos. Beatae facilis delectus commodi quibusdam necessitatibus totam non rerum at nobis quas accusantium aliquid ipsum excepturi pariatur tempore vel nam, dolor iure. At temporibus magnam quisquam, possimus rem earum assumenda aut optio tenetur iure sed recusandae cumque dicta repellendus. Quibusdam accusamus a nobis, assumenda saepe ad provident. Atque ab sunt nostrum eligendi fugit suscipit veritatis voluptates, aperiam repellat, architecto, ullam adipisci vel. Libero amet rem tempora maxime minus. Accusamus animi, sed itaque nemo impedit architecto, saepe unde, recusandae hic dicta ea repudiandae repellendus eius illo aliquid! Quam saepe fugit earum adipisci sed vero pariatur reprehenderit deleniti sunt, eaque ut vitae molestiae aspernatur ipsa veritatis, non officiis fuga minus quisquam quasi odit nemo fugiat praesentium? Consequuntur vero id nemo, totam temporibus sequi impedit nam unde, laudantium quia mollitia error quisquam eum sit commodi aliquam officia odit. Quaerat accusantium officiis atque, reiciendis dolore consequuntur porro quia, aperiam quisquam praesentium quos fuga aspernatur deleniti fugit commodi harum, quis expedita explicabo corrupti deserunt vero natus dolor! Iusto, veniam fuga similique quibusdam perferendis obcaecati, recusandae doloribus, vitae pariatur hic dignissimos maiores numquam ex placeat odio distinctio cupiditate aspernatur delectus dolore minus! Provident temporibus nobis ducimus ipsa excepturi. At, veniam nostrum! Non magnam vero exercitationem blanditiis, debitis, molestiae explicabo ipsum odit autem quia adipisci fugit at sapiente excepturi similique libero. Vero praesentium vel, incidunt consequatur dolorum quas ipsum corporis libero nulla quia nostrum magni suscipit. Vel quam blanditiis culpa quaerat, aliquid nemo possimus alias recusandae tempore pariatur odio. Esse delectus vel fugit ex reiciendis perspiciatis non repudiandae mollitia itaque debitis reprehenderit id, iste cupiditate ratione! Alias non nobis dignissimos nostrum odio, modi debitis, rerum asperiores tempore labore voluptas unde suscipit ipsum illum, facilis officia provident odit tenetur. Nobis repudiandae commodi est, quidem, temporibus hic ipsam suscipit et accusamus placeat, ex culpa. Neque maxime architecto maiores accusamus officia aspernatur nam, voluptates vel, illo modi amet animi fuga. Cumque maiores nostrum beatae deserunt magni recusandae sunt alias porro corporis nesciunt eligendi illum facere culpa aut autem rem blanditiis quos tenetur, ipsum repellendus similique sit! Placeat, illo fuga delectus impedit, maxime eveniet rerum in ex, eos deserunt porro praesentium recusandae necessitatibus amet itaque sequi. Iusto repudiandae in illo similique delectus culpa doloremque beatae velit ducimus. Nisi libero facere dolorum aliquam distinctio, vitae consectetur quis ipsam, animi hic eum voluptate ipsum, recusandae eligendi. Culpa totam maxime mollitia voluptatibus deserunt ipsam est consequuntur modi voluptas quibusdam vel doloribus repudiandae possimus fugit laborum blanditiis dolorum inventore hic veritatis iure, quia, rem nemo sapiente. Officiis esse debitis impedit pariatur beatae unde eos delectus sed maiores aperiam ex velit commodi, dolorem magnam nemo molestias quam, sunt sapiente aliquid consequuntur. Similique assumenda dignissimos fugit fuga soluta, dolor id asperiores esse, aperiam iste laudantium animi mollitia at blanditiis totam ipsam temporibus repellat rerum vitae ducimus inventore quisquam. Maxime et eos molestiae maiores quis!</p>
+                <p id="myDiv">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus porro quae accusamus repellat id a, necessitatibus corrupti laboriosam! Pariatur cumque perferendis minima possimus. Distinctio reiciendis quisquam quaerat provident odio nihil?</p>
                 <div class="btn-wrap pt-1 pt-md-3  text-center">
                     <a href="javascript:void()" class="white-btn fw-bold" id="readMoreBtn" onclick="toggleHeight()">Read More..</a>
                 </div>
             </div>
-            </section>
-        <!-- <section class="common-gap">
-            <div class="section-container section-type-tranding-list">
-                <h2 class="sec-heading">TRENDING LOOKS</h2>
-                
-                <div class="see-all-slider-wrap">
-                    <div class="hidden-container">
-                        <div class="swiper video-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                  <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                  <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                  <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                                <div class="swiper-slide">
-                                    <video src="https://into-the-program.com/uploads/sample_video01.mp4" autoplay muted loop playsinline preload></video>
-                                </div>
-                               
-                               </div>
-
-                        </div>
-                        <div class="swiper-button-next swiper-btn"></div>
-                        <div class="swiper-button-prev swiper-btn"></div>
-                    </div>
-                </div>
-            </div>
-
-        </section> -->
+        </section>
+        
 
         <section>
             <div class="common-gap" id="faq-panel-home">
                 <h2 class="faq-header text-center">Frequently Asked Questions</h2>
 
                 <div class="faq-content">
-                    <div class="faq-question">
-                        <input id="q1" type="checkbox" class="panel">
-                        <div class="plus">+</div>
-                        <label for="q1" class="panel-title">What is the meaning of life?</label>
-                        <div class="panel-content">42</div>
-                    </div>
-
-                    <div class="faq-question">
-                        <input id="q2" type="checkbox" class="panel">
-                        <div class="plus">+</div>
-                        <label for="q2" class="panel-title">How much wood would a woodchuck chuck?</label>
-                        <div class="panel-content">A woodchuck would chuck all the wood he could chuck, if a woodchuck
-                            could chuck wood!</div>
-                    </div>
-
-                    <div class="faq-question">
-                        <input id="q3" type="checkbox" class="panel">
-                        <div class="plus">+</div>
-                        <label for="q3" class="panel-title">What happens if Pinocchio says, "my nose will grow
-                            now"?</label>
-                        <div class="panel-content">Certain questions are better left &nbsp;</div>
-                    </div>
+                    @foreach ($faqs as $faq)
+                        <div class="faq-question">
+                            <input id="{{ $faq->id }}" type="checkbox" class="panel">
+                            <div class="plus">+</div>
+                            <label for="{{ $faq->id }}" class="panel-title">{{ $faq->question }}</label>
+                            <div class="panel-content">{{ $faq->answer }}</div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>
-       
-
-      
-
-        
-        <!-- <section class="common-gap">
-            <div class="section-container section-type-your-words">
-                <h2 class="sec-heading">Your Words, Not Ours</h2>
-
-                <div class="your-word-wrap">
-                    <div class="review-total-wrap">
-                        <div class="star-wrapper">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.0001 21L5.7711 25.3262L7.3427 16.1631L0.685303 9.67376L9.8856 8.33688L14.0001 0L18.1146 8.33688L27.3149 9.67376L20.6575 16.1631L22.2291 25.3262L14.0001 21Z"
-                                        fill="#FFD200" />
-                                </svg>
-                            </span>
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.0001 21L5.7711 25.3262L7.3427 16.1631L0.685303 9.67376L9.8856 8.33688L14.0001 0L18.1146 8.33688L27.3149 9.67376L20.6575 16.1631L22.2291 25.3262L14.0001 21Z"
-                                        fill="#FFD200" />
-                                </svg>
-                            </span>
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.0001 21L5.7711 25.3262L7.3427 16.1631L0.685303 9.67376L9.8856 8.33688L14.0001 0L18.1146 8.33688L27.3149 9.67376L20.6575 16.1631L22.2291 25.3262L14.0001 21Z"
-                                        fill="#FFD200" />
-                                </svg>
-                            </span>
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.0001 21L5.7711 25.3262L7.3427 16.1631L0.685303 9.67376L9.8856 8.33688L14.0001 0L18.1146 8.33688L27.3149 9.67376L20.6575 16.1631L22.2291 25.3262L14.0001 21Z"
-                                        fill="#FFD200" />
-                                </svg>
-                            </span>
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 28 26"
-                                    fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.0001 21L5.7711 25.3262L7.3427 16.1631L0.685303 9.67376L9.8856 8.33688L14.0001 0L18.1146 8.33688L27.3149 9.67376L20.6575 16.1631L22.2291 25.3262L14.0001 21Z"
-                                        fill="#FFD200" />
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="brizzar-img">
-                            <img src="./images/bizrate.webp" alt>
-                        </div>
-                        <div class="rating-views font-18">
-                            <span>9.4</span>
-                            out of
-                            <span>10</span>
-                        </div>
-                        <div class="review-img">
-                            <img src="./images/bbb-logo.webp" alt>
-                        </div>
-                    </div>
-                    <div class="hidden-container">
-                        <div class="swiper reviews">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="review-card">
-                                        <div class="review-top-area d-flex align-items-center">
-                                            <img src="./images/7mm-aaaa-peridot-yellow-gold-earrings.webp" alt>
-                                            <div class="star-wrapper-black pt-0">
-                                                <div class="star-rating">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <h6 class="font-18">
-                                                    Absolutely Perfect!
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <div class="review-disc">
-                                            <p>I have been looking for a
-                                                simple, elegant classic
-                                                pearl ring. Out if three I
-                                                found in jewcus, my husband
-                                                and I chose this one.
-                                                Perfection!</p>
-                                        </div>
-                                        <div class="customer-name font-13">
-                                            <div>Mary C.</div>
-                                            <div>14 Sep, 2023</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="btn-wraper">
-                            <a class="view-all" href="#">View All <span class="value-change">Customer Reviews
-                                </span> </a>
-                            <div class="swiper-button-prev swiper-btn"></div>
-                            <div class="swiper-button-next swiper-btn"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </section> -->
     </main>
 @endsection
 

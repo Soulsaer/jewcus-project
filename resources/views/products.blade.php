@@ -1971,7 +1971,7 @@
                                             <div
                                                 class="slider-tab-pirce d-flex justify-content-between align-items-center">
                                                 <div class="price-wwrap-prdt">
-                                                    <span>${{ $product->price }}</span>
+                                                    <span>${{ $product->price_in_india }}</span>
                                                 
                                                 </div>
 

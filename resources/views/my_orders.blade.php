@@ -13,7 +13,7 @@
 <?php
 // dd($product); 
 ?>
-   <main class="main" style="background-color: #fff;">
+   {{-- <main class="main" style="background-color: #fff;">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
@@ -113,6 +113,6 @@
                     </div>
             </div>
         </section>
-    </main>
+    </main> --}}
 
 @endsection

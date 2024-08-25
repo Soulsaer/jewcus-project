@@ -11,7 +11,7 @@
 
 @section('content')
 
-<section class="pt-80 mb-50">
+{{-- <section class="pt-80 mb-50">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <style>
     .order-dot {

@@ -69,13 +69,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/orders', [WebHomeController::class, 'ordersList'])->name('orders');
 Route::get('/order-tracking/{order_id}', [WebHomeController::class, 'trackOrder'])->name('order.track');
 
-Route::post('buy-now', [CheckoutController::class, 'buyNow'])->name('buy_now');
-Route::get('buy-now-cod/{order_id}', [CheckoutController::class, 'buyNowCod'])->name('buy_now_cod');
-Route::get('buy-now-from-cart', [CheckoutController::class, 'buyNowCart'])->name('buy_now_cart');
-Route::post('billing-details/store', [CheckoutController::class, 'billingDetailStore'])->name('billing_detail_store');
+// Route::post('buy-now', [CheckoutController::class, 'buyNow'])->name('buy_now');
+// Route::get('buy-now-cod/{order_id}', [CheckoutController::class, 'buyNowCod'])->name('buy_now_cod');
+// Route::get('buy-now-from-cart', [CheckoutController::class, 'buyNowCart'])->name('buy_now_cart');
+// Route::post('billing-details/store', [CheckoutController::class, 'billingDetailStore'])->name('billing_detail_store');
 
-Route::get('stripe', [CheckoutController::class, 'stripe']);
-Route::post('stripe', [CheckoutController::class, 'stripePost'])->name('stripe.post');
+// Route::get('stripe', [CheckoutController::class, 'stripe']);
+// Route::post('stripe', [CheckoutController::class, 'stripePost'])->name('stripe.post');
 
 // Authentication routes
 // Route::get('login', [CustomAuthController::class, 'index'])->name('login');
@@ -93,19 +93,14 @@ Route::get('cart', [WebHomeController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [WebHomeController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [WebHomeController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [WebHomeController::class, 'remove'])->name('remove.from.cart');
-Route::get('wishlist', [WebHomeController::class, 'wishlist'])->name('wishlist');
-Route::post('/donate', [DonateController::class, 'submit'])->name('donate.submit');
+// Route::get('wishlist', [WebHomeController::class, 'wishlist'])->name('wishlist');
+
 Route::get('userlogin', [WebHomeController::class, 'userlogin'])->name('userlogin');
 Route::get('/register', [WebHomeController::class, 'showRegistrationForm'])->name('show-register');
 Route::post('/user-register', [WebHomeController::class, 'register'])->name('register');
 Route::post('/web-login', [WebHomeController::class, 'webLogin'])->name('web-login');
 Route::post('/logout', [WebHomeController::class, 'logout'])->name('logout');
-Route::get('business-with-us', [WebHomeController::class, 'businessUs'])->name('business_us');
-Route::get('donation', [WebHomeController::class, 'donation'])->name('donation');
-Route::get('gemstones', [WebHomeController::class, 'buy_Only_Gamstones'])->name('buy-Only-Gamstones');
-Route::get('customized-jewelry', [WebHomeController::class, 'customization'])->name('customizaton');
-Route::get('your-donations', [WebHomeController::class, 'your_Donations'])->name('your-donations');
-Route::get('/sitemap.xml', [SitemapXmlController::class, 'index']);
+
 
 Route::get('blogs', [WebHomeController::class, 'allblogs'])->name('blogs');
 Route::get('shipping-policy', [WebHomeController::class, 'shipping_policy'])->name('shipping_policy');
@@ -114,9 +109,6 @@ Route::get('about-us', [WebHomeController::class, 'about_us'])->name('about_us')
 Route::get('contact-us', [WebHomeController::class, 'contactUs'])->name('contactUs');
 Route::get('privacy-policy', [WebHomeController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('terms-conditions', [WebHomeController::class, 'termsConditions'])->name('termsConditions');
-
-
-Route::post('/enquiry-form', [EnquiryController::class, 'store'])->name('enquiry.submit');
 
 // routes/web.php
 // Route::get('/search', [WebHomeController::class, 'search'])->name('search');
@@ -142,20 +134,6 @@ Route::post('/enquiry-form', [EnquiryController::class, 'store'])->name('enquiry
 //     Route::get($product->url_key . '/{id}', [WebHomeController::class, 'singleproduct'])->name('singleproduct');
 // }
 
-
-Route::get('/jewelry/form', [JewelryController::class, 'showForm']);
-Route::post('/jewelry/submit', [JewelryController::class, 'submitForm']);
-
-Route::post('/bulkorder-list', [BulkOrderController::class, 'bulkOrder'])->name('bulkorder.list');
-
-
-Route::post('bulkorder-list', [BulkOrderController::class, 'bulkOrder'])->name('bulkorder-list');
-
-
-
-Route::post('/bulk-order/submit', [BulkOrderController::class, 'submitForm'])->name('bulk-order.submit');
-
-
 // Fetch Blogs data from the database
 $blogs = DB::table('lastblogs')->get();
 
@@ -167,9 +145,6 @@ foreach ($blogs as $blog) {
 
 // Other routes
 Route::get('/about', [WebHomeController::class, 'about']);
-// Route::get('/blogs', [WebHomeController::class, 'blogs']);
-// Route::resource('contact-us', ContactController::class);
-
 
 // Other routes
 Route::post('upload-blog-image', 'BlogController@upload')->name('upload-blog-image'); 

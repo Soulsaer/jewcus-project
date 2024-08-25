@@ -36,98 +36,54 @@ use Auth;
 
 class WebHomeController extends Controller
 {
-    // public function headercategory(){
-    //   $subcategory = Subcategory::find($subcategory_id);
-    //   $category = Category::find($category_id);
-
-    //   $childcategories = $subcategory->childcategories()->where('parent_category_id', $category->id)->get();
-
-    // }
     public function index()
-    {
+{
+    // Fetch data
+    $homeSection = HomePageSection::find(1);
+    $formatTreeCategory = Category::tree();
+    $subChieldcategory = Chieldcategory::where('status', 1)->get();
+    $international_shop = Shop::all();
+    $blogs = Blog::where('status', 1)->get();
+    $ads = Ads::where('status', 1)->get();
+    $mustblog = Midblog::where('status', 1)->get();
+    $discover = Discover::where('status', 1)->get();
+    $lastblogs = Lastblog::where('status', 1)->take(4)->orderBy('id', 'desc')->get();
+    $slider = Slider::where('status', 1)->get();
+    $gellary = Gellery::where('status', 1)->take(4)->get();
+    $products = NewProduct::all();
+    $faqs = Faq::all();
+    
+    // Meta data
+    $meta_data = TblMetaInfo::find(1);
+    $keyword = $meta_data->keyword ?? '';
+    $title = $meta_data->title ?? '';
+    $description = $meta_data->description ?? '';
+    $others = $meta_data->other_meta ?? '';
+    $content_home = $meta_data->content ?? '';
 
-        $homeSection = HomePageSection::find(1);
-        // dd($homeSection);
+    // Render view
+    return view('index', compact(
+        'ads',
+        'homeSection',
+        'international_shop',
+        'discover',
+        'subChieldcategory',
+        'content_home',
+        'formatTreeCategory',
+        'keyword',
+        'title',
+        'others',
+        'description',
+        'faqs',
+        'blogs',
+        'slider',
+        'mustblog',
+        'lastblogs',
+        'gellary',
+        'products'
+    ));
+}
 
-        $formatTreeCategory = Category::tree();
-        // $subChieldcategory = Chieldcategory::all();
-        $subChieldcategory = Chieldcategory::where('status', 1)->get();
-
-        // dd($formatTreeCategory);
-        $international_shop = Shop::all();
-        $blog = Blog::where("status", "1")->get();
-        $ads = Ads::where("status", "1")->get();
-        $mustblog = Midblog::where("status", "1")->get();
-        $discover = Discover::where("status", "1")->get();
-        $lastblog = Lastblog::where("status", "1")->take(4)->orderBy('id', 'desc')->get();
-        $slider = Slider::where("status", "1")->get();
-        $gellary = Gellery::where("status", "1")->take(4)->get();
-
-        $mostLiked = Product::with('category')->inRandomOrder()->withCount('orders')->take(7)->get();
-        // dd($mostLiked);
-               
-        
-        $celebrateWithColor = CelebrateWithColor::where("status", "1")->get();
-        $youcando = YouCanDo::where("status", "1")->get();
-        
-        
-        $product = Product::where("status", "1")->get();
-        
-        $product1 = Product::where('parent_category','32')->inRandomOrder()->take(7)->get();
-        $product2 = Product::where('parent_category','41')->inRandomOrder()->take(7)->get();
-        $product3 = Product::where('parent_category','40')->inRandomOrder()->take(7)->get();
-        $product4 = Product::where('parent_category','42')->inRandomOrder()->take(7)->get();
-       
-        // dd($product4);
-        $faq = Faq::where("study", "no")->get();
-
-        // $product1 = Product::where('category_id', 1)->take(7)->get();
-        // $product2 = Product::where('category_id', 2)->take(7)->get();
-        // $product3 = Product::where('category_id', 3)->take(7)->get();
-        // $product4 = Product::where('category_id', 4)->take(7)->get();
-      
-        $meta_data = TblMetaInfo::find(1);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-            $content_home = $meta_data->content;
-        }
-
-
-        return view(
-            "index",
-            compact([
-                "ads",
-                "homeSection",
-                "celebrateWithColor",
-                "youcando",
-                "international_shop",
-                "discover",
-                "subChieldcategory",
-                "content_home",
-                "formatTreeCategory",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "faq",
-                "blog",
-                "slider",
-                "mustblog",
-                "lastblog",
-                "gellary",
-                "product",
-                'product1',
-                'product2',
-                'product3',
-                'product4',
-                'mostLiked'
-                
-            ])
-        );
-    }
 
     public function products(){
         $products = NewProduct::all();
@@ -209,28 +165,28 @@ class WebHomeController extends Controller
         $subChieldcategory = Chieldcategory::all();
         $categoryData = Category::where('url',$slug)->first();
           $international_shop = Shop::all();
-        @$productDetails = Product::where('parent_category',$categoryData->id)->inRandomOrder()->paginate(36);
+        $productDetails = Product::where('parent_category',$categoryData->id)->inRandomOrder()->paginate(36);
         // dd($categoryData);
         
        
-        @$content =$categoryData->description;
-        @$meta_data = TblMetaInfo::find(10);
+        $content =$categoryData->description;
+        $meta_data = TblMetaInfo::find(10);
         if($meta_data){
-        //   $keyword = $meta_data->keyword;
-        //   $title = $meta_data->title;
-        //   $description = $meta_data->description;
-        //   $others = $meta_data->other_meta;
-          @$keyword =  $categoryData->meta_keyword;
-          @$title =  $categoryData->meta_title;
-          @$description =  $categoryData->meta_description;
-          @$others = $categoryData->other_meta;
+            //   $keyword = $meta_data->keyword;
+            //   $title = $meta_data->title;
+            //   $description = $meta_data->description;
+            //   $others = $meta_data->other_meta;
+            $keyword =  $categoryData->meta_keyword;
+            $title =  $categoryData->meta_title;
+            $description =  $categoryData->meta_description;
+            $others = $categoryData->other_meta;
           }
 
 
         return view('category_details',compact(['international_shop','keyword','title','description','others','formatTreeCategory','subChieldcategory','productDetails' ,'content']));
-      }
+    }
       
-      public function child_category_details($slug ,$child_slug){
+    public function child_category_details($slug ,$child_slug){
         //   dd($slug ,$child_slug);
         $formatTreeCategory = Category::tree();
         $subChieldcategory = Chieldcategory::all();
@@ -261,71 +217,7 @@ class WebHomeController extends Controller
           }
         return view('category_details',compact(['international_shop','keyword','title','description','others','formatTreeCategory','subChieldcategory','productDetails','content']));
           
-      }
-    
-    
-    
-    
-    //  public function child_category_details(Request $request, $slug, $child_slug){
-          
-    //     $formatTreeCategory = Category::tree();
-    //     $subChieldcategory = Chieldcategory::all();
-    //     $categoryData = Category::where('url',$slug)->first();
-        
-    //      //dd($categoryData);
-    //      $childCategoryData = Chieldcategory::where('url',$child_slug)->first();
-          
-          
-    //      //$childCategoryData = Chieldcategory::where('url', $child_slug)->where('url', request()->path())->first();
-
-          
-    //       //dd($category);
-          
-    //     $productDetails = Product::where([['parent_category', '=',$categoryData->id],['child_category', '=',$childCategoryData->id]])->get();
-     
-    //     $content =$childCategoryData->description;
-    //     $meta_data = TblMetaInfo::find(3);
-    //     if($meta_data){
-    //         //   dd($childCategoryData);
-    //       $keyword = $childCategoryData->meta_keyword;
-    //       $title = $childCategoryData->meta_title;
-    //       $description = $childCategoryData->meta_description;
-    //       $others = $childCategoryData->other_meta;
-    //       }
-    //     return view('category_details',compact(['keyword','title','description','others','formatTreeCategory','subChieldcategory','productDetails','content']));
-          
-    //   }
-    
-    
-    
-    
-    
-    
-    // public function category_details()
-    // {
-    //     $formatTreeCategory = Category::tree();
-    //     $subChieldcategory = Chieldcategory::all();
-
-    //     $meta_data = TblMetaInfo::find(10);
-    //     if ($meta_data) {
-    //         $keyword = $meta_data->keyword;
-    //         $title = $meta_data->title;
-    //         $description = $meta_data->description;
-    //         $others = $meta_data->other_meta;
-    //     }
-    //     return view(
-    //         "category_details",
-    //         compact([
-    //             "subChieldcategory",
-    //             "formatTreeCategory",
-    //             "keyword",
-    //             "title",
-    //             "description",
-    //             "others",
-              
-    //         ])
-    //     );
-    // }
+    }
 
     public function userlogin()
     {
@@ -357,45 +249,6 @@ class WebHomeController extends Controller
             ])
         );
     }
-
-    public function your_Donations()
-    {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-           $international_shop = Shop::all();
-
-        $category = Category::where("status", "1")->get();
-        $subcategory = Subcategory::where("status", "1")->get();
-        $childcategory = Chieldcategory::where("status", "1")->get();
-        $yourdonations = YourDonation::where("status", "1")->get();
-        $meta_data = TblMetaInfo::find(5);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-             $content = $meta_data->content;
-        }
-        return view(
-            "your_Donations",
-            compact([
-                "yourdonations",
-                "subChieldcategory",
-                "formatTreeCategory",
-                 "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "content",
-               
-            ])
-        );
-    }
-    
-    
-    
-    
     
      public function allblogs()
     {
@@ -407,7 +260,7 @@ class WebHomeController extends Controller
         $subcategory = Subcategory::where("status", 1)->get();
         $childcategory = Chieldcategory::where("status", 1)->get();
         
-         $allblog = Lastblog::where("status", 1)->get();
+        $allblog = Lastblog::where("status", 1)->get();
 
         $meta_data = TblMetaInfo::find(5);
         if ($meta_data) {
@@ -435,10 +288,42 @@ class WebHomeController extends Controller
         );
     }
     
+
     
+    public function shipping_policy(){
+            $formatTreeCategory = Category::tree();
+            $subChieldcategory = Chieldcategory::all();
+            $international_shop = Shop::all();
+            $category = Category::where("status", "1")->get();
+            $subcategory = Subcategory::where("status", "1")->get();
+            $childcategory = Chieldcategory::where("status", "1")->get();
+
+            $meta_data = TblMetaInfo::find(14);
+            if ($meta_data) {
+                $keyword = $meta_data->keyword;
+                $title = $meta_data->title;
+                $description = $meta_data->description;
+                $others = $meta_data->other_meta;
+                $content = $meta_data->content;
+            }
+            return view(
+            
+                "Shipping_policy",
+                compact([
+                    "subChieldcategory",
+                    "formatTreeCategory",
+                    "international_shop",
+                    "keyword",
+                    "title",
+                    "others",
+                    "description",
+                    "content",
+                
+                ])
+            );
+    }
     
-    
-public function shipping_policy(){
+    public function return_policy(){
         $formatTreeCategory = Category::tree();
         $subChieldcategory = Chieldcategory::all();
         $international_shop = Shop::all();
@@ -446,114 +331,65 @@ public function shipping_policy(){
         $subcategory = Subcategory::where("status", "1")->get();
         $childcategory = Chieldcategory::where("status", "1")->get();
 
-        $meta_data = TblMetaInfo::find(14);
+        $meta_data = TblMetaInfo::find(15);
         if ($meta_data) {
             $keyword = $meta_data->keyword;
             $title = $meta_data->title;
             $description = $meta_data->description;
             $others = $meta_data->other_meta;
-             $content = $meta_data->content;
+            $content = $meta_data->content;
         }
         return view(
-           
-            "Shipping_policy",
+        
+            "return_policy",
             compact([
                 "subChieldcategory",
                 "formatTreeCategory",
-                 "international_shop",
+                "international_shop",
                 "keyword",
                 "title",
                 "others",
                 "description",
                 "content",
-               
+            
             ])
         );
     }
-    
-    
-    
      
-    
-public function return_policy(){
-    $formatTreeCategory = Category::tree();
-    $subChieldcategory = Chieldcategory::all();
-    $international_shop = Shop::all();
-    $category = Category::where("status", "1")->get();
-    $subcategory = Subcategory::where("status", "1")->get();
-    $childcategory = Chieldcategory::where("status", "1")->get();
+    public function about_us(){
+            $formatTreeCategory = Category::tree();
+            $subChieldcategory = Chieldcategory::all();
+            $international_shop = Shop::all();
+            $category = Category::where("status", "1")->get();
+            $subcategory = Subcategory::where("status", "1")->get();
+            $childcategory = Chieldcategory::where("status", "1")->get();
 
-    $meta_data = TblMetaInfo::find(15);
-    if ($meta_data) {
-        $keyword = $meta_data->keyword;
-        $title = $meta_data->title;
-        $description = $meta_data->description;
-        $others = $meta_data->other_meta;
-         $content = $meta_data->content;
+            $meta_data = TblMetaInfo::find(5);
+            if ($meta_data) {
+                $keyword = $meta_data->keyword;
+                $title = $meta_data->title;
+                $description = $meta_data->description;
+                $others = $meta_data->other_meta;
+                $content = $meta_data->content;
+            }
+            return view(
+            
+                "about_us",
+                compact([
+                    "subChieldcategory",
+                    "formatTreeCategory",
+                    "international_shop",
+                    "keyword",
+                    "title",
+                    "others",
+                    "description",
+                    "content",
+                
+                ])
+            );
     }
-    return view(
-       
-        "return_policy",
-        compact([
-            "subChieldcategory",
-            "formatTreeCategory",
-             "international_shop",
-            "keyword",
-            "title",
-            "others",
-            "description",
-            "content",
-           
-        ])
-    );
-}
-    
-    
-    
-    
-     
-public function about_us(){
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
-        $category = Category::where("status", "1")->get();
-        $subcategory = Subcategory::where("status", "1")->get();
-        $childcategory = Chieldcategory::where("status", "1")->get();
-
-        $meta_data = TblMetaInfo::find(5);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-             $content = $meta_data->content;
-        }
-        return view(
-           
-            "about_us",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                 "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "content",
-               
-            ])
-        );
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  public function search(Request $request)
+        
+    public function search(Request $request)
     {
         $query = $request->input('query');
 
@@ -561,77 +397,77 @@ public function about_us(){
 
         return response()->json($products);
     }
-    
-
-  public function customization()
-{
-    $formatTreeCategory = Category::tree();
-    $subChieldcategory = Chieldcategory::all();
-    $international_shop = Shop::all();
-    $workshopimg = Workshop::where('status', 1)->get();
-    $recent_reviews = Review::where('status', 1)->get();
-    $blog = Lastblog::where("status", "1")->get();
-    $faq = Faq::where("study", "no")->get();
-     $team = Team::where("status", "1")->get();
-    $CustomizationBanner = CustomizationBanner::where("banner_type", "customized-jewelry")->get();
-    $custom_furniture = CustomFurniture::where('status', 1)->get();
-     $processcustomized = ProcessCustomized::where("status", "1")->get();
-     
-    $processcustomized_one = ProcessCustomized::where("status", "1")->where("section_type", "section_1")->get();
-    $processcustomized_two = ProcessCustomized::where("status", "1")->where("section_type", "section_2")->get();
-    $processcustomized_three = ProcessCustomized::where("status", "1")->where("section_type", "section_3")->get();
-    $processcustomized_four = ProcessCustomized::where("status", "1")->where("section_type", "section_4")->get();
-    $processcustomized_five = ProcessCustomized::where("status", "1")->where("section_type", "section_5")->get();
-    
-     $cbimg = Bestjewelry::where("status", "1")->where("adstypeimg", "customized-jewelry")->get();
-        // $cbimg = Team::where("status", "1")->get();
-    $meta_data = TblMetaInfo::find(6);
-
-
-    $processData = \App\Models\ProcessCustomizeJewelry::find(1);
-    $sectionData = \App\Models\CustomizePageSection::find(1);
-
-
-
-    $data = [
-        "faq" => $faq,
-        "workshopimg" => $workshopimg,
-        "subChieldcategory" => $subChieldcategory,
-        "formatTreeCategory" => $formatTreeCategory,
-        "international_shop" => $international_shop,
-        "keyword" => null,
-        "title" => null,
-        "others" => null,
-        "description" => null,
-        "content" => null,
-        "recent_reviews" => $recent_reviews,
-        "blog" => $blog,
-        "CustomizationBanner" => $CustomizationBanner,
-        "custom_furniture" => $custom_furniture,
-        "team" => $team,
-        "processcustomized" => $processcustomized,
-        "processcustomized_one" => $processcustomized_one,
-        "processcustomized_two" => $processcustomized_two,
-        "processcustomized_three" => $processcustomized_three,
-        "processcustomized_four" => $processcustomized_four,
-        "processcustomized_five" => $processcustomized_five,
-        "cbimg" => $cbimg,
-        "processData" => $processData,
-        "sectionData" => $sectionData,
-    ];
-
-    if ($meta_data) {
-        $data["keyword"] = $meta_data->keyword;
-        $data["title"] = $meta_data->title;
-        $data["description"] = $meta_data->description;
-        $data["others"] = $meta_data->other_meta;
-        $data["content"] = $meta_data->content;
-        //$content_home = $meta_data->content;
         
-    }
 
-    return view("customization", $data);
-}
+    public function customization()
+    {
+        $formatTreeCategory = Category::tree();
+        $subChieldcategory = Chieldcategory::all();
+        $international_shop = Shop::all();
+        $workshopimg = Workshop::where('status', 1)->get();
+        $recent_reviews = Review::where('status', 1)->get();
+        $blog = Lastblog::where("status", "1")->get();
+        $faq = Faq::where("study", "no")->get();
+        $team = Team::where("status", "1")->get();
+        $CustomizationBanner = CustomizationBanner::where("banner_type", "customized-jewelry")->get();
+        $custom_furniture = CustomFurniture::where('status', 1)->get();
+        $processcustomized = ProcessCustomized::where("status", "1")->get();
+        
+        $processcustomized_one = ProcessCustomized::where("status", "1")->where("section_type", "section_1")->get();
+        $processcustomized_two = ProcessCustomized::where("status", "1")->where("section_type", "section_2")->get();
+        $processcustomized_three = ProcessCustomized::where("status", "1")->where("section_type", "section_3")->get();
+        $processcustomized_four = ProcessCustomized::where("status", "1")->where("section_type", "section_4")->get();
+        $processcustomized_five = ProcessCustomized::where("status", "1")->where("section_type", "section_5")->get();
+        
+        $cbimg = Bestjewelry::where("status", "1")->where("adstypeimg", "customized-jewelry")->get();
+            // $cbimg = Team::where("status", "1")->get();
+        $meta_data = TblMetaInfo::find(6);
+
+
+        $processData = \App\Models\ProcessCustomizeJewelry::find(1);
+        $sectionData = \App\Models\CustomizePageSection::find(1);
+
+
+
+        $data = [
+            "faq" => $faq,
+            "workshopimg" => $workshopimg,
+            "subChieldcategory" => $subChieldcategory,
+            "formatTreeCategory" => $formatTreeCategory,
+            "international_shop" => $international_shop,
+            "keyword" => null,
+            "title" => null,
+            "others" => null,
+            "description" => null,
+            "content" => null,
+            "recent_reviews" => $recent_reviews,
+            "blog" => $blog,
+            "CustomizationBanner" => $CustomizationBanner,
+            "custom_furniture" => $custom_furniture,
+            "team" => $team,
+            "processcustomized" => $processcustomized,
+            "processcustomized_one" => $processcustomized_one,
+            "processcustomized_two" => $processcustomized_two,
+            "processcustomized_three" => $processcustomized_three,
+            "processcustomized_four" => $processcustomized_four,
+            "processcustomized_five" => $processcustomized_five,
+            "cbimg" => $cbimg,
+            "processData" => $processData,
+            "sectionData" => $sectionData,
+        ];
+
+        if ($meta_data) {
+            $data["keyword"] = $meta_data->keyword;
+            $data["title"] = $meta_data->title;
+            $data["description"] = $meta_data->description;
+            $data["others"] = $meta_data->other_meta;
+            $data["content"] = $meta_data->content;
+            //$content_home = $meta_data->content;
+            
+        }
+
+        return view("customization", $data);
+    }
 
 
     public function singleproduct(Request $request, $url)
@@ -693,9 +529,7 @@ public function about_us(){
                 ])
             );
         }
-    }
-    
-    
+    } 
     
      public function singleblogs(Request $request, $id)
     {
@@ -748,158 +582,7 @@ public function about_us(){
         }
     }
     
-    
-    
-    
-    
-    
-    
-//     public function business_us()
-//     {
-//         $formatTreeCategory = Category::tree();
-//         $subChieldcategory = Chieldcategory::all();
-//   $international_shop = Shop::all();
-   
-//   $workshopimg = Workshop::where('status', 1)->get();
-
-
-//         $meta_data = TblMetaInfo::find(8);
-//         if ($meta_data) {
-//             $keyword = $meta_data->keyword;
-//             $title = $meta_data->title;
-//             $description = $meta_data->description;
-//             $others = $meta_data->other_meta;
-//              $content = $meta_data->content;
-//         }
-//         return view(
-//             "Business_With_Us",
-//             "workshopimg",
-//             compact([
-//                 "subChieldcategory",
-//                 "formatTreeCategory",
-//                  "international_shop",
-//                 "keyword",
-//                 "title",
-//                 "others",
-//                 "description",
-//                 "content",
-               
-//             ])
-//         );
-//     }
-
-
-public function businessUs()
-{
-
-    $faq = Faq::where("study", "no")->get();
-    $recent_reviews = Review::where('status', 1)->get();
-    $blog = Lastblog::where("status", "1")->get();
-    $team = Team::where("status", "1")->get();
-
-    $meta_data = TblMetaInfo::find(8);
-    $lastblog = Lastblog::where("status", "1")->take(4)->orderBy('id', 'desc')->get();
-
-    $whyChoose = \App\Models\WhyChooseHuzurr::get();
-    $resellers = \App\Models\WorldwideReseller::get();
-    $br_jewelries = \App\Models\BestRatedJewelry::get();
-
-
-    $businessSection = \App\Models\BusinessPageSection::find(1);
-
-    $data = [
-        "keyword" => null,
-        "title" => null,
-        "others" => null,
-        "description" => null,
-        "content" => null,
-        "faq" => $faq,
-        "recent_reviews" => $recent_reviews,
-        "blog" => $blog,
-        "team" => $team,
-        "businessSection" => $businessSection,
-        "lastblog" => $lastblog,
-        "whyChoose" => $whyChoose,
-        "resellers" => $resellers,
-        "br_jewelries" => $br_jewelries
-    ];
-    
-    if ($meta_data) {
-        $data["keyword"] = $meta_data->keyword;
-        $data["title"] = $meta_data->title;
-        $data["description"] = $meta_data->description;
-        $data["others"] = $meta_data->other_meta;
-        $data["content"] = $meta_data->content;
-    }
-    
-    return view("business_with_us", $data);
-}
-
-
-    public function donation()
-    {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
- 
-
-        $meta_data = TblMetaInfo::find(7);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-             $content = $meta_data->content;
-        }
-        return view(
-            "donation",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                 "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "content",
-            
-            ])
-        );
-    }
-
-    public function buy_Only_Gamstones()
-    {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
-     
-
-        $meta_data = TblMetaInfo::find(9);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-             $content = $meta_data->content;
-        }
-        return view(
-            "buy_Only_Gamstones",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                 "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "content",
-             
-            ])
-        );
-    }
-
-
-        public function addToCart($id)
+    public function addToCart($id)
     {
         $product = Product::findOrFail($id);
         
@@ -935,110 +618,110 @@ public function businessUs()
     }
 
 
-public function update(Request $request)
-{
-    try {
-        $id = $request->id;
-        $qty = $request->qty;
+    public function update(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $qty = $request->qty;
 
-        if ($id && $qty) {
-            // Check if the user is logged in
-            if (Auth::check()) {
-                // If logged in, update the cart item in the database
-                $cartItem = Cart::where('id', $id)
-                    ->where('user_id', Auth::user()->id)
-                    ->first();
+            if ($id && $qty) {
+                // Check if the user is logged in
+                if (Auth::check()) {
+                    // If logged in, update the cart item in the database
+                    $cartItem = Cart::where('id', $id)
+                        ->where('user_id', Auth::user()->id)
+                        ->first();
 
-                if ($cartItem) {
-                    $cartItem->update(['qty' => $qty]);
-                    session()->flash('success', 'Cart updated successfully');
+                    if ($cartItem) {
+                        $cartItem->update(['qty' => $qty]);
+                        session()->flash('success', 'Cart updated successfully');
+                    } else {
+                        session()->flash('error', 'Product not found in the cart');
+                    }
                 } else {
-                    session()->flash('error', 'Product not found in the cart');
+                    // If not logged in, update the cart item in the session
+                    $cart = session()->get('cart', []);
+
+                    if (isset($cart[$id])) {
+                        $cart[$id]["qty"] = $qty;
+                        session()->put('cart', $cart);
+                        session()->flash('success', 'Cart updated successfully');
+                    } else {
+                        session()->flash('error', 'Product not found in the cart');
+                    }
                 }
             } else {
-                // If not logged in, update the cart item in the session
-                $cart = session()->get('cart', []);
-
-                if (isset($cart[$id])) {
-                    $cart[$id]["qty"] = $qty;
-                    session()->put('cart', $cart);
-                    session()->flash('success', 'Cart updated successfully');
-                } else {
-                    session()->flash('error', 'Product not found in the cart');
-                }
+                session()->flash('error', 'Invalid parameters provided for updating cart');
             }
-        } else {
-            session()->flash('error', 'Invalid parameters provided for updating cart');
+        } catch (\Exception $e) {
+            session()->flash('error', 'An error occurred while updating the cart');
         }
-    } catch (\Exception $e) {
-        session()->flash('error', 'An error occurred while updating the cart');
     }
-}
 
-public function remove(Request $request)
-{
-    try {
-        $id = $request->id;
+    public function remove(Request $request)
+    {
+        try {
+            $id = $request->id;
 
-        if ($id) {
-            // Check if the user is logged in
-            if (Auth::check()) {
-                // If logged in, remove the cart item from the database
-                $cartItem = Cart::where('id', $id)
-                    ->where('user_id', Auth::user()->id)
-                    ->first();
+            if ($id) {
+                // Check if the user is logged in
+                if (Auth::check()) {
+                    // If logged in, remove the cart item from the database
+                    $cartItem = Cart::where('id', $id)
+                        ->where('user_id', Auth::user()->id)
+                        ->first();
 
-                if ($cartItem) {
-                    $cartItem->delete();
-                    session()->flash('success', 'Product removed successfully');
+                    if ($cartItem) {
+                        $cartItem->delete();
+                        session()->flash('success', 'Product removed successfully');
+                    } else {
+                        session()->flash('error', 'Product not found in the cart');
+                    }
                 } else {
-                    session()->flash('error', 'Product not found in the cart');
+                    // If not logged in, remove the cart item from the session
+                    $cart = session()->get('cart', []);
+
+                    if (isset($cart[$id])) {
+                        unset($cart[$id]);
+                        session()->put('cart', $cart);
+                        session()->flash('success', 'Product removed successfully');
+                    } else {
+                        session()->flash('error', 'Product not found in the cart');
+                    }
                 }
             } else {
-                // If not logged in, remove the cart item from the session
-                $cart = session()->get('cart', []);
-
-                if (isset($cart[$id])) {
-                    unset($cart[$id]);
-                    session()->put('cart', $cart);
-                    session()->flash('success', 'Product removed successfully');
-                } else {
-                    session()->flash('error', 'Product not found in the cart');
-                }
+                session()->flash('error', 'Invalid parameter provided for removing product from the cart');
             }
-        } else {
-            session()->flash('error', 'Invalid parameter provided for removing product from the cart');
+        } catch (\Exception $e) {
+            session()->flash('error', 'An error occurred while removing the product from the cart');
         }
-    } catch (\Exception $e) {
-        session()->flash('error', 'An error occurred while removing the product from the cart');
     }
-}
-public function showRegistrationForm(Request $request){
-      $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-   $international_shop = Shop::all();
-   
-        $meta_data = TblMetaInfo::find(4);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-        }
-        return view(
-            "register",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                 "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-              
-            ])
-        );
-}
+    public function showRegistrationForm(Request $request){
+        $formatTreeCategory = Category::tree();
+            $subChieldcategory = Chieldcategory::all();
+            $international_shop = Shop::all();
+    
+            $meta_data = TblMetaInfo::find(4);
+            if ($meta_data) {
+                $keyword = $meta_data->keyword;
+                $title = $meta_data->title;
+                $description = $meta_data->description;
+                $others = $meta_data->other_meta;
+            }
+            return view(
+                "register",
+                compact([
+                    "subChieldcategory",
+                    "formatTreeCategory",
+                    "international_shop",
+                    "keyword",
+                    "title",
+                    "others",
+                    "description",
+                
+                ])
+            );
+    }
     public function register(Request $request)
     {
          $this->validate($request, [
@@ -1113,7 +796,7 @@ public function showRegistrationForm(Request $request){
         ]);
     }
     
- public function logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
 
