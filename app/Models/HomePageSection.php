@@ -17,7 +17,6 @@ class HomePageSection extends Model
         'page_name',
         'section_1_heading',
         'section_1_sub_heading',
-        'section_1_images',
         'section_4_heading',
         'section_4_sub_heading',
         'section_4_image',
@@ -28,10 +27,5 @@ class HomePageSection extends Model
         'section_8_sub_heading',
     ];
 
-    // Cast JSON fields to arrays
-    protected $casts = [
-        'section_1_images' => 'json',
-        'section_4_image' => 'json', // Adjust if you store JSON for this field
-    ];
 
 }

@@ -9,13 +9,11 @@ class NewProduct extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
+        'image',
+        'description',
+        'categories_ids',
         'meta_title',
         'meta_description',
         'other_meta_info',
@@ -33,8 +31,10 @@ class NewProduct extends Model
         'setting',
         'stone_shape',
         'stock_status',
-        'image',
-        'description',
-        'categories_ids'
+    ];
+
+    protected $casts = [
+        'categories_ids' => 'array',
+        'other_meta_info' => 'array',
     ];
 }

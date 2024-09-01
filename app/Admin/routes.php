@@ -16,7 +16,6 @@ Route::group([
     $router->resource('sliders', SliderController::class);
     $router->resource('tbl-meta-infos', PageController::class);
     $router->resource('shops', ShopController::class);
-    $router->resource('ads', AdsController::class);
     $router->resource('new-products', NewProductsController::class);
     $router->resource('orders', OrderController::class);
 
@@ -24,24 +23,20 @@ Route::group([
     $router->resource('childcategories', ChieldcategoryController::class);
     $router->resource('subcategories', SubcategoryController::class);
     $router->resource('faqs', FaqController::class);
-    $router->resource('workshops', WorkshopController::class);
-    $router->resource('reviews', ReviewController::class);
     $router->resource('customization-banners', CustomizationBannerController::class);
     $router->resource('teams', TeamController::class);
     $router->resource('bulk-orders', BulkOrderController::class);
-    $router->resource('midblogs', MidblogController::class);
+    $router->resource('faq-blogs', FaqBlogController::class);
     $router->resource('lastblogs', LastblogController::class);
-    $router->resource('discovers', DiscoverController::class);
     $router->resource('gelleries', GelleryController::class);
+    $router->resource('section-images', SectionImageController::class);
 
     $router->resource('customize-page-sections', CustomizePageSectionController::class);
     $router->resource('process-customize-jewelries', ProcessCustomizeJewelryController::class);
-    $router->resource('business-page-sections', BusinessPageSectionController::class);
     $router->resource('home-page-sections', HomePageSectionController::class);
     $router->resource('metal-variants', MetalVariantController::class);
     $router->resource('gemstone-variants', GemstoneVariantController::class);
 
-    $router->resource('worldwide-resellers', WorldwideResellerController::class);
-    $router->resource('best-rated-jewelries', BestRatedJewelryController::class);
+    $router->resource('worldwide-resellers', WorldwideResellerController::class);   
 
 });

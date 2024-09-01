@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('best_rated_jewelries', function (Blueprint $table) {
+        Schema::create('faq_blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('image', 150);
-            $table->string('name', 150)->nullable();
-            $table->string('alt', 250)->nullable();
-            $table->string('link', 250)->nullable();
+            $table->string('midblog_image',155);
+            $table->string('banner_heading',255);
+            $table->string('slug')->unique();
+            $table->string('author');
+            $table->date('date');
+            $table->text('description');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('best_rated_jewelries');
+        Schema::dropIfExists('faq_blogs');
     }
 };

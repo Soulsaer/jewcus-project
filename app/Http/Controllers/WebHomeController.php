@@ -4,30 +4,20 @@ use Illuminate\Http\Request;
 use App\Models\TblMetaInfo;
 use App\Models\Blog;
 use App\Models\Shop;
-use App\Models\Midblog;
+use App\Models\FaqBlog;
 use App\Models\Lastblog;
 use App\Models\Slider;
 use App\Models\Gellery;
-use App\Models\Product;
 use App\Models\NewProduct;
 use App\Models\Chieldcategory;
 use App\Models\Subcategory;
 use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Order;
-use App\Models\Discover;
 use App\Models\Cart;
 use App\Models\Ads;
-use App\Models\Workshop;
-use App\Models\Review;
-use App\Models\CustomizationBanner;
-use App\Models\Businessbanner;
-use App\Models\CustomFurniture;
-use App\Models\CelebrateWithColor;
-use App\Models\YouCanDo;
-use App\Models\ProcessCustomized;
+use App\Models\SectionImage;
 use App\Models\Team;
-use App\Models\YourDonation;
 use App\Models\Bestjewelry;
 use App\Models\HomePageSection;
 use DB;
@@ -37,52 +27,56 @@ use Auth;
 class WebHomeController extends Controller
 {
     public function index()
-{
-    // Fetch data
-    $homeSection = HomePageSection::find(1);
-    $formatTreeCategory = Category::tree();
-    $subChieldcategory = Chieldcategory::where('status', 1)->get();
-    $international_shop = Shop::all();
-    $blogs = Blog::where('status', 1)->get();
-    $ads = Ads::where('status', 1)->get();
-    $mustblog = Midblog::where('status', 1)->get();
-    $discover = Discover::where('status', 1)->get();
-    $lastblogs = Lastblog::where('status', 1)->take(4)->orderBy('id', 'desc')->get();
-    $slider = Slider::where('status', 1)->get();
-    $gellary = Gellery::where('status', 1)->take(4)->get();
-    $products = NewProduct::all();
-    $faqs = Faq::all();
-    
-    // Meta data
-    $meta_data = TblMetaInfo::find(1);
-    $keyword = $meta_data->keyword ?? '';
-    $title = $meta_data->title ?? '';
-    $description = $meta_data->description ?? '';
-    $others = $meta_data->other_meta ?? '';
-    $content_home = $meta_data->content ?? '';
+    {
+        // Fetch data
+        $homeSection = HomePageSection::find(1);
+        $formatTreeCategory = Category::tree();
+        $subChieldcategory = Chieldcategory::where('status', 1)->get();
+        $international_shop = Shop::all();
+        $lastblogs = Lastblog::where('status', 1)->take(4)->orderBy('id', 'desc')->get(); //
+        $slider = Slider::where('status', 1)->get();
+        $gellary = Gellery::where('status', 1)->take(4)->get();
+        $products = NewProduct::all(); //
+        $faqs = Faq::all();
+        $sectionOneImages = SectionImage::all(); //
+        
+        // Meta data
+        $meta_data = TblMetaInfo::find(1);
+        $keyword = $meta_data->keyword ?? '';
+        $title = $meta_data->title ?? '';
+        $description = $meta_data->description ?? '';
+        $others = $meta_data->other_meta ?? '';
+        $content_home = $meta_data->content ?? '';
 
-    // Render view
-    return view('index', compact(
-        'ads',
-        'homeSection',
-        'international_shop',
-        'discover',
-        'subChieldcategory',
-        'content_home',
-        'formatTreeCategory',
-        'keyword',
-        'title',
-        'others',
-        'description',
-        'faqs',
-        'blogs',
-        'slider',
-        'mustblog',
-        'lastblogs',
-        'gellary',
-        'products'
-    ));
-}
+        // Render view
+        return view('index', compact(
+            'homeSection',
+            'international_shop',
+            'sectionOneImages',
+            'subChieldcategory',
+            'content_home',
+            'formatTreeCategory',
+            'keyword',
+            'title',
+            'others',
+            'description',
+            'faqs',
+            'slider',
+            'lastblogs',
+            'gellary',
+            'products'
+        ));
+    }
+
+    public function allfaq(){
+        $faqBlogs = FaqBlog::all();
+        return view('faqs', compact('faqBlogs'));
+    }
+
+    public function faqShow($id){
+        $faqBlog = FaqBlog::find($id);
+        return view('faq-detail', compact('faqBlog'));
+    }
 
 
     public function products(){
@@ -95,63 +89,15 @@ class WebHomeController extends Controller
 
     public function cart()
     {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
-        // $category = Category::where("status", "1")->get();
-        // $subcategory = Subcategory::where("status", "1")->get();
-        // $childcategory = Chieldcategory::where("status", "1")->get();
-
-        $meta_data = TblMetaInfo::find(2);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-        }
         return view(
-            "cart",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-               
-            ])
+            "cart"
         );
     }
 
     public function wishlist()
     {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-         $international_shop = Shop::all();
-        $category = Category::where("status", "1")->get();
-        $subcategory = Subcategory::where("status", "1")->get();
-        $childcategory = Chieldcategory::where("status", "1")->get();
-
-        $meta_data = TblMetaInfo::find(3);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-        }
         return view(
             "wishlist",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-               
-            ])
         );
     }
     
@@ -252,39 +198,12 @@ class WebHomeController extends Controller
     
      public function allblogs()
     {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-           $international_shop = Shop::all();
-
-        $category = Category::where("status", 1)->get();
-        $subcategory = Subcategory::where("status", 1)->get();
-        $childcategory = Chieldcategory::where("status", 1)->get();
-        
-        $allblog = Lastblog::where("status", 1)->get();
-
-        $meta_data = TblMetaInfo::find(5);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-            $content = $meta_data->content;
-        }
+        $blogs = Lastblog::get();
         return view(
            
             "all_blog",
-            compact([
-                "allblog",
-                "subChieldcategory",
-                "formatTreeCategory",
-                 "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "content",
-               
-            ])
+            compact(
+                "blogs",)
         );
     }
     
@@ -324,69 +243,15 @@ class WebHomeController extends Controller
     }
     
     public function return_policy(){
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
-        $category = Category::where("status", "1")->get();
-        $subcategory = Subcategory::where("status", "1")->get();
-        $childcategory = Chieldcategory::where("status", "1")->get();
-
-        $meta_data = TblMetaInfo::find(15);
-        if ($meta_data) {
-            $keyword = $meta_data->keyword;
-            $title = $meta_data->title;
-            $description = $meta_data->description;
-            $others = $meta_data->other_meta;
-            $content = $meta_data->content;
-        }
         return view(
-        
             "return_policy",
-            compact([
-                "subChieldcategory",
-                "formatTreeCategory",
-                "international_shop",
-                "keyword",
-                "title",
-                "others",
-                "description",
-                "content",
-            
-            ])
         );
     }
      
     public function about_us(){
-            $formatTreeCategory = Category::tree();
-            $subChieldcategory = Chieldcategory::all();
-            $international_shop = Shop::all();
-            $category = Category::where("status", "1")->get();
-            $subcategory = Subcategory::where("status", "1")->get();
-            $childcategory = Chieldcategory::where("status", "1")->get();
-
-            $meta_data = TblMetaInfo::find(5);
-            if ($meta_data) {
-                $keyword = $meta_data->keyword;
-                $title = $meta_data->title;
-                $description = $meta_data->description;
-                $others = $meta_data->other_meta;
-                $content = $meta_data->content;
-            }
-            return view(
-            
-                "about_us",
-                compact([
-                    "subChieldcategory",
-                    "formatTreeCategory",
-                    "international_shop",
-                    "keyword",
-                    "title",
-                    "others",
-                    "description",
-                    "content",
-                
-                ])
-            );
+        return view(
+            "about_us",
+        );
     }
         
     public function search(Request $request)
@@ -401,186 +266,121 @@ class WebHomeController extends Controller
 
     public function customization()
     {
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
-        $workshopimg = Workshop::where('status', 1)->get();
-        $recent_reviews = Review::where('status', 1)->get();
-        $blog = Lastblog::where("status", "1")->get();
-        $faq = Faq::where("study", "no")->get();
-        $team = Team::where("status", "1")->get();
-        $CustomizationBanner = CustomizationBanner::where("banner_type", "customized-jewelry")->get();
-        $custom_furniture = CustomFurniture::where('status', 1)->get();
-        $processcustomized = ProcessCustomized::where("status", "1")->get();
-        
-        $processcustomized_one = ProcessCustomized::where("status", "1")->where("section_type", "section_1")->get();
-        $processcustomized_two = ProcessCustomized::where("status", "1")->where("section_type", "section_2")->get();
-        $processcustomized_three = ProcessCustomized::where("status", "1")->where("section_type", "section_3")->get();
-        $processcustomized_four = ProcessCustomized::where("status", "1")->where("section_type", "section_4")->get();
-        $processcustomized_five = ProcessCustomized::where("status", "1")->where("section_type", "section_5")->get();
-        
-        $cbimg = Bestjewelry::where("status", "1")->where("adstypeimg", "customized-jewelry")->get();
-            // $cbimg = Team::where("status", "1")->get();
-        $meta_data = TblMetaInfo::find(6);
-
-
-        $processData = \App\Models\ProcessCustomizeJewelry::find(1);
-        $sectionData = \App\Models\CustomizePageSection::find(1);
-
-
-
-        $data = [
-            "faq" => $faq,
-            "workshopimg" => $workshopimg,
-            "subChieldcategory" => $subChieldcategory,
-            "formatTreeCategory" => $formatTreeCategory,
-            "international_shop" => $international_shop,
-            "keyword" => null,
-            "title" => null,
-            "others" => null,
-            "description" => null,
-            "content" => null,
-            "recent_reviews" => $recent_reviews,
-            "blog" => $blog,
-            "CustomizationBanner" => $CustomizationBanner,
-            "custom_furniture" => $custom_furniture,
-            "team" => $team,
-            "processcustomized" => $processcustomized,
-            "processcustomized_one" => $processcustomized_one,
-            "processcustomized_two" => $processcustomized_two,
-            "processcustomized_three" => $processcustomized_three,
-            "processcustomized_four" => $processcustomized_four,
-            "processcustomized_five" => $processcustomized_five,
-            "cbimg" => $cbimg,
-            "processData" => $processData,
-            "sectionData" => $sectionData,
-        ];
-
-        if ($meta_data) {
-            $data["keyword"] = $meta_data->keyword;
-            $data["title"] = $meta_data->title;
-            $data["description"] = $meta_data->description;
-            $data["others"] = $meta_data->other_meta;
-            $data["content"] = $meta_data->content;
-            //$content_home = $meta_data->content;
-            
-        }
-
-        return view("customization", $data);
+        return view("customization");
     }
 
 
-    public function singleproduct(Request $request, $url)
-    {
-        // dd($url);
-        $id = $request->id;
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
+    // public function singleproduct(Request $request, $url)
+    // {
+    //     // dd($url);
+    //     $id = $request->id;
+    //     $formatTreeCategory = Category::tree();
+    //     $subChieldcategory = Chieldcategory::all();
+    //     $international_shop = Shop::all();
 
 
-        // dd($request);
-        $slug = $request->segment(1);
+    //     // dd($request);
+    //     $slug = $request->segment(1);
  
-        $keyword = $title = $description = $others = "";
+    //     $keyword = $title = $description = $others = "";
 
-        $product = Product::with(['metal_variants' => function($q) {
-            $q->with('variant');
-        }, 'gemstone_variants' => function($q) {
-            $q->with('variant');
-        }])->where("url_key", $slug)->first();
+    //     $product = Product::with(['metal_variants' => function($q) {
+    //         $q->with('variant');
+    //     }, 'gemstone_variants' => function($q) {
+    //         $q->with('variant');
+    //     }])->where("url_key", $slug)->first();
 
-        $products = Product::where('parent_category', $product->parent_category)->inRandomOrder()
-            ->limit(10)
-            ->get();
-        if (!empty($product)) {
-            //dd($product);
-            $keyword = $product->meta_keyword;
-            $title = $product->meta_title;
-            $description = $product->meta_description;
-            $others = $product->other_meta;
+    //     $products = Product::where('parent_category', $product->parent_category)->inRandomOrder()
+    //         ->limit(10)
+    //         ->get();
+    //     if (!empty($product)) {
+    //         //dd($product);
+    //         $keyword = $product->meta_keyword;
+    //         $title = $product->meta_title;
+    //         $description = $product->meta_description;
+    //         $others = $product->other_meta;
             
 
-            return view(
-                "product_details",
-                compact([
-                    "subChieldcategory",
-                    "formatTreeCategory",
-                     "international_shop",
-                    "keyword",
-                    "title",
-                    "description",
-                    "others",
-                    "product",
-                    "products",
-                ])
-            );
-        } else {
-            return view(
-                "error_404",
-                compact([
-                    "subChieldcategory",
-                    "formatTreeCategory",
-                     "international_shop",
-                    "keyword",
-                    "title",
-                    "description",
-                    "others",
-                ])
-            );
-        }
-    } 
+    //         return view(
+    //             "product_details",
+    //             compact([
+    //                 "subChieldcategory",
+    //                 "formatTreeCategory",
+    //                  "international_shop",
+    //                 "keyword",
+    //                 "title",
+    //                 "description",
+    //                 "others",
+    //                 "product",
+    //                 "products",
+    //             ])
+    //         );
+    //     } else {
+    //         return view(
+    //             "error_404",
+    //             compact([
+    //                 "subChieldcategory",
+    //                 "formatTreeCategory",
+    //                  "international_shop",
+    //                 "keyword",
+    //                 "title",
+    //                 "description",
+    //                 "others",
+    //             ])
+    //         );
+    //     }
+    // } 
     
-     public function singleblogs(Request $request, $id)
-    {
-           //dd($id);
-        $formatTreeCategory = Category::tree();
-        $subChieldcategory = Chieldcategory::all();
-        $international_shop = Shop::all();
-        // dd($request);
-        $slug = $request->segment(1);
+    //  public function singleblogs(Request $request, $id)
+    // {
+    //        //dd($id);
+    //     $formatTreeCategory = Category::tree();
+    //     $subChieldcategory = Chieldcategory::all();
+    //     $international_shop = Shop::all();
+    //     // dd($request);
+    //     $slug = $request->segment(1);
  
-        $keyword = $title = $description = $others = "";
-        $blog = Lastblog::where("slug", $slug)->first();
-        $blogs = Lastblog::orderby("id", "desc")
-            ->limit(10)
-            ->get();
-        if (!empty($blog)) {
-            $keyword = $blog->meta_keyword;
-            $title = $blog->meta_title;
-            $description = $blog->meta_description;
-            $others = $blog->other_meta;
+    //     $keyword = $title = $description = $others = "";
+    //     $blog = Lastblog::where("slug", $slug)->first();
+    //     $blogs = Lastblog::orderby("id", "desc")
+    //         ->limit(10)
+    //         ->get();
+    //     if (!empty($blog)) {
+    //         $keyword = $blog->meta_keyword;
+    //         $title = $blog->meta_title;
+    //         $description = $blog->meta_description;
+    //         $others = $blog->other_meta;
             
 
-            return view(
-                "blogs_details",
-                compact([
-                    "subChieldcategory",
-                    "formatTreeCategory",
-                     "international_shop",
-                    "keyword",
-                    "title",
-                    "description",
-                    "others",
-                    "blog",
-                    "blogs",
-                ])
-            );
-        } else {
-            return view(
-                "error_404",
-                compact([
-                    "subChieldcategory",
-                    "formatTreeCategory",
-                     "international_shop",
-                    "keyword",
-                    "title",
-                    "description",
-                    "others",
-                ])
-            );
-        }
-    }
+    //         return view(
+    //             "blogs_details",
+    //             compact([
+    //                 "subChieldcategory",
+    //                 "formatTreeCategory",
+    //                  "international_shop",
+    //                 "keyword",
+    //                 "title",
+    //                 "description",
+    //                 "others",
+    //                 "blog",
+    //                 "blogs",
+    //             ])
+    //         );
+    //     } else {
+    //         return view(
+    //             "error_404",
+    //             compact([
+    //                 "subChieldcategory",
+    //                 "formatTreeCategory",
+    //                  "international_shop",
+    //                 "keyword",
+    //                 "title",
+    //                 "description",
+    //                 "others",
+    //             ])
+    //         );
+    //     }
+    // }
     
     public function addToCart($id)
     {
@@ -799,11 +599,6 @@ class WebHomeController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
-        // $request->session()->invalidate();
-
-        // $request->session()->regenerateToken();
-
         return redirect('/');
     }
 

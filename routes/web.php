@@ -69,22 +69,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/orders', [WebHomeController::class, 'ordersList'])->name('orders');
 Route::get('/order-tracking/{order_id}', [WebHomeController::class, 'trackOrder'])->name('order.track');
 
-// Route::post('buy-now', [CheckoutController::class, 'buyNow'])->name('buy_now');
-// Route::get('buy-now-cod/{order_id}', [CheckoutController::class, 'buyNowCod'])->name('buy_now_cod');
-// Route::get('buy-now-from-cart', [CheckoutController::class, 'buyNowCart'])->name('buy_now_cart');
-// Route::post('billing-details/store', [CheckoutController::class, 'billingDetailStore'])->name('billing_detail_store');
-
-// Route::get('stripe', [CheckoutController::class, 'stripe']);
-// Route::post('stripe', [CheckoutController::class, 'stripePost'])->name('stripe.post');
-
-// Authentication routes
-// Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-// Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-// Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-// Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
-// Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
-
-
 
 // Home routes
 Route::get('/', [WebHomeController::class, 'index'])->name('homeIndex');
@@ -103,6 +87,8 @@ Route::post('/logout', [WebHomeController::class, 'logout'])->name('logout');
 
 
 Route::get('blogs', [WebHomeController::class, 'allblogs'])->name('blogs');
+Route::get('all-faqs', [WebHomeController::class, 'allfaq'])->name('allfaq');
+Route::get('/faqs/{id}', [WebHomeController::class, 'faqShow'])->name('faqs.show');
 Route::get('shipping-policy', [WebHomeController::class, 'shipping_policy'])->name('shipping_policy');
 Route::get('return-policy', [WebHomeController::class, 'return_policy'])->name('return_policy');
 Route::get('about-us', [WebHomeController::class, 'about_us'])->name('about_us');
@@ -110,37 +96,15 @@ Route::get('contact-us', [WebHomeController::class, 'contactUs'])->name('contact
 Route::get('privacy-policy', [WebHomeController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('terms-conditions', [WebHomeController::class, 'termsConditions'])->name('termsConditions');
 
-// routes/web.php
-// Route::get('/search', [WebHomeController::class, 'search'])->name('search');
-// Route::get('/search/products', 'ProductController@search')->name('search.products');
 
-// Route::get('/product/{product_id}/{id}', [WebHomeController::class, ''])->name('product.detail');
-// Route::get('/{product_id}/{id}', [WebHomeController::class, 'singleProduct'])->name('product.detail');
-
-// Route::get('/product/{id}', [WebHomeController::class, 'singleproduct'])->name('product');
-
-// // Dynamic product routes
-// $productsRoute = DB::table('products')->get();
-// foreach ($productsRoute as $value) {
-//     Route::get($value->url_key,$value->id, '\App\Http\Controllers\WebHomeController@singleproduct');
-// }
-
-
-// Fetch product data from the database
-// $products = DB::table('products')->get();
-
-// Iterate through products and register routes
-// foreach ($products as $product) {
-//     Route::get($product->url_key . '/{id}', [WebHomeController::class, 'singleproduct'])->name('singleproduct');
-// }
 
 // Fetch Blogs data from the database
-$blogs = DB::table('lastblogs')->get();
+// $blogs = DB::table('lastblogs')->get();
 
-// Iterate through products and register routes
-foreach ($blogs as $blog) {
-    Route::get($blog->slug . '/{id}', [WebHomeController::class, 'singleblogs'])->name('singleblogs');
-}
+// // Iterate through products and register routes
+// foreach ($blogs as $blog) {
+//     Route::get($blog->slug . '/{id}', [WebHomeController::class, 'singleblogs'])->name('singleblogs');
+// }    
 
 
 // Other routes

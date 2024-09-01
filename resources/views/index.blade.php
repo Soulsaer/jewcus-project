@@ -10,56 +10,6 @@
 @endsection
 
 @section('content')
-    <!-- Floating btn -->
-    <!-- <div class="fab-wrapper">
-        <input id="fabCheckbox" type="checkbox" class="fab-checkbox" />
-        <label class="fab" for="fabCheckbox">
-          <span class="fab-dots fab-dots-1"></span>
-          <span class="fab-dots fab-dots-2"></span>
-          <span class="fab-dots fab-dots-3"></span>
-        </label>
-        <div class="fab-wheel">
-          <a class="fab-action fab-action-1 hover-up">
-            <p>Business</p>
-          </a>
-          <a class="fab-action fab-action-2 hover-up">
-            <p>Customization</p>
-          </a>
-              <a class="fab-action fab-action-3 hover-up">
-                <p>Live Sale</p>
-          </a>
-            <a class="fab-action fab-action-4 hover-up">
-                <p>Your Products</p>
-          </a>
-        </div>
-      </div> -->
-
-    <!-- Floating btns -->
-    <!-- <a href="Business_With_Us.html" class="float hover-up" target="_blank">
-        <p class="fs-6">Business With Us</p>
-    </a>
-    <a href="Customization-2.html" class="float2 hover-up" target="_blank">
-        <p class="fs-6">Customization</p>
-    </a> -->
-    <!-- Floating btns End-->
-
-    <!-- Preloader -->
-    <!-- <div id="preloader"></div> -->
-
-    <!-- header -->
-    <!-- <div id="header"></div> -->
-    <!-- header End -->
-
-    <!-- <div class="overlay_model">
-        <div class="modal_home_popup">
-            @foreach($ads as $item)
-            <button id="close-modal-btn" class="border-0 border border-dark border-2"
-                style="position: absolute;top: 0;left: 0;background-color: transparent;">X</button>
-            <img src="{{asset('storage/'.$item->banner)}}" class="h-100 w-100" alt="">
-            @endforeach
-        </div>
-    </div>
- -->
     <!-- body -->
 
     <main>
@@ -308,17 +258,20 @@
                 <p class="text-dark">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, officiis.</p>
             </div>
             <ul class="p-0 m-0">
-        <!--<li>
-            <figure><img id="mobile_focused_category_slider_bangle" title="1% Instant discount on all UPI transaction" alt="Malabar Gold &amp; Diamonds' 1% Instant discount on all UPI transaction" src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/Offer.jpg" /></figure>
-            <p class="sub-cat-title">UPI Offer</p>
-            </li> -->
-            <li onclick="location.href='https://www.malabargoldanddiamonds.com/diamond-jewellery/ring.html';">
-                <img id="mobile_focused_category_slider_bangle" title="Diamond Rings for Women"
-                    alt="Diamond Rings for Women"
-                    src="{{ asset('storage/' . $homeSection->section_1_images['image']) }}">
-                <p class="sub-cat-title">{{ $homeSection->section_4_heading }}</p>
-            </li>
-            
+                <!--<li>
+                    <figure><img id="mobile_focused_category_slider_bangle" title="1% Instant discount on all UPI transaction" alt="Malabar Gold &amp; Diamonds' 1% Instant discount on all UPI transaction" src="https://static.malabargoldanddiamonds.com/media/wysiwyg/offer_page/2024/02_feb/ind-homepage/category-slider/Offer.jpg" /></figure>
+                    <p class="sub-cat-title">UPI Offer</p>
+                    </li> -->
+                @if(isset($sectionOneImages) && count($sectionOneImages) > 0)
+                    @foreach ($sectionOneImages as $sectionOneImage)
+                        <li onclick="location.href='https://www.malabargoldanddiamonds.com/diamond-jewellery/ring.html';">
+                            <img id="mobile_focused_category_slider_bangle" title="Diamond Rings for Women"
+                                alt="Diamond Rings for Women"
+                                src="{{ asset('storage/' . $sectionOneImage->section_1_images) }}">
+                            <p class="sub-cat-title">{{ $sectionOneImage->section_1_images_text }}</p>
+                        </li>    
+                    @endforeach
+                @endif
             </ul>
         </div>
         <section class="common-gap pt-4">
@@ -366,34 +319,33 @@
                     <div class="hidden-container">
                         <div class="swiper jewelry">
                             <div class="swiper-wrapper">
-                                @foreach ($products as $product)
-                                    <div class="swiper-slide">
-                                        <div class="shadow-box text-center">
-                                            <a href="#">
-                                                <img src="{{ asset('storage/' . $product->image) }}" alt="fsda">
-                                                <h6 class="product_title_h">{{ $product->name }}</h6> 
-                                                <span class="product_price_h">${{ $product->price_in_india }}</span>
-                                            </a>
-                                            <div class="text-end">
-                                                <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
-                                                    <i class="bi bi-heart text-light"></i>
+                                @if(isset($products) && count($products) > 0)
+                                    @foreach ($products as $product)
+                                        <div class="swiper-slide">
+                                            <div class="shadow-box text-center">
+                                                <a href="#">
+                                                    <img src="{{ asset('storage/' . $product->image) }}" alt="fsda">
+                                                    <h6 class="product_title_h">{{ $product->name }}</h6> 
+                                                    <span class="product_price_h">${{ $product->price_in_india }}</span>
                                                 </a>
-                                                <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
-                                                    <i class="bi bi-cart3 text-light"></i>
-                                                </a>
+                                                <div class="text-end">
+                                                    <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-1 mx-1" href="wishlist.html">
+                                                        <i class="bi bi-heart text-light"></i>
+                                                    </a>
+                                                    <a class="pro_wishlist rounded-circle text-center product-cart-whislist-btn ps-2 pt-2 pb-2 pe-2 mx-1" href="cart.html">
+                                                        <i class="bi bi-cart3 text-light"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="slider-arrows">
                                 <div class="swiper-button-prev swiper-btn"></div>
                                 <div class="swiper-button-next swiper-btn"></div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -459,14 +411,10 @@
                         </div>
                         <div class="btn-wraper">
                             <a class="view-all" href="#">View All <span class="value-change">Jewelry</span> </a>
-
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </section>
         
         <section class="common-gap">
@@ -832,9 +780,9 @@
 @endsection
 
 @section('js')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.js"></script> --}}
         <!-- faq js -->
         <script>
             const items = document.querySelectorAll('.accordion_faq button');

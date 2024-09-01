@@ -29,7 +29,6 @@ class HomePageSectionController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('section_1_heading', __('Section 1 Heading'));
         $grid->column('section_1_sub_heading', __('Section 1 Sub Heading'));
-        $grid->column('section_1_images', __('Section 1 Images'))->image('', 100, 100); // Display image with 100x100 size
 
         $grid->column('section_4_heading', __('Section 4 Heading'));
         $grid->column('section_4_sub_heading', __('Section 4 Sub Heading'));
@@ -61,7 +60,6 @@ class HomePageSectionController extends AdminController
         $show->field('id', __('Id'));
         $show->field('section_1_heading', __('Section 1 Heading'));
         $show->field('section_1_sub_heading', __('Section 1 Sub Heading'));
-        $show->field('section_1_images', __('Section 1 Images'))->image(); // Display full-size image
 
         $show->field('section_4_heading', __('Section 4 Heading'));
         $show->field('section_4_sub_heading', __('Section 4 Sub Heading'));
@@ -94,14 +92,6 @@ class HomePageSectionController extends AdminController
         $form->tab('Section-1', function (Form $form) {
             $form->text('section_1_heading', __('Section 1 Heading'));
             $form->text('section_1_sub_heading', __('Section 1 Sub Heading'));
-
-            // Embedded form for images with metadata
-            $form->embeds('section_1_images','Images' ,function ($form) {
-                $form->image('image', __('Image'))->uniqueName()->move('home_image');
-                $form->text('alt', __('Alt Text'));
-                $form->text('url', __('URL'));
-                $form->text('text', __('Text'));
-            });
         });
 
         $form->tab('Section-4', function (Form $form) {

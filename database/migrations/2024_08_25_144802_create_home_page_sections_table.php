@@ -18,10 +18,6 @@ return new class extends Migration
             $table->string('page_name', 150);
             $table->string('section_1_heading', 150)->nullable();
             $table->string('section_1_sub_heading', 150)->nullable();
-            $table->json('section_1_images')->nullable();
-            $table->json('section_1_images_alt')->nullable();
-            $table->json('section_1_images_url')->nullable();
-            $table->json('section_1_images_text')->nullable();
             $table->string('section_4_sub_heading', 255)->nullable();
             $table->string('section_4_heading', 150)->nullable();
             $table->string('section_4_image', 150)->nullable();

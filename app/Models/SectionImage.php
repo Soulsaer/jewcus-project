@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Workshop extends Model
+class SectionImage extends Model
 {
     use HasFactory;
+    public $table = 'section_1_images_data';
+    
 }

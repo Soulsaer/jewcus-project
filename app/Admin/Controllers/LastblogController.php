@@ -41,13 +41,13 @@ class LastblogController extends AdminController
         $grid->column('status', __('Status'))->icon([
             0 => 'toggle-off',
             1 => 'toggle-on',
-        ], $default = '');
+        ], $default = '');        
         // $grid->column('alt', __('Alt'));
         $grid->column('created_at', __('Created at'))->display(function($date) {
-            return Carbon::parse($date)->format(config('huzurr.datetime_format'));
+            return Carbon::parse($date)->format(config('jewcus.datetime_format'));
         });
         $grid->column('updated_at', __('Updated at'))->display(function($date) {
-            return Carbon::parse($date)->format(config('huzurr.datetime_format'));
+            return Carbon::parse($date)->format(config('jewcus.datetime_format'));
         });
 
         return $grid;

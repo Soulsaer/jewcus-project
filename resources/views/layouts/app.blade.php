@@ -17,7 +17,6 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    {{-- <link rel="stylesheet" href="{{ asset('/assets/css/main.css?v=112') }}"> --}}
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -32,19 +31,10 @@
     @yield('other_tags')
 
 
-    <meta name="p:domain_verify" content="4113c8cd1b39c521530d37ab5db4109a"/>
-    <!--Google Console Code-->
-
     @yield('style')
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/indexmain.js"></script>
     <script>
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-JR4R7XP3WR');
     </script>
   
 </head>
