@@ -1891,6 +1891,7 @@
                     <div class="proct-type-main">
                         <div class="product-all-inner">
                             @foreach ($products as $product)
+                            {{-- @dd($product); --}}
                                 <div class="product-cat-box tabs_wrapper">
                                     <ul class="slider-tabs tabs align-items-center">
                                         <li class="tab-link current" id="tab-1">
@@ -1968,14 +1969,19 @@
                                             <div class="desc-cat">
                                                 <p>{{ $product->name }}</p>
                                             </div>
-                                            <div
-                                                class="slider-tab-pirce d-flex justify-content-between align-items-center">
+                                            <div class="slider-tab-pirce d-flex justify-content-between align-items-center">
                                                 <div class="price-wwrap-prdt">
-                                                    <span>${{ $product->price_in_india }}</span>
-                                                
+                                                    <span class="text-decoration-line-through">${{ $product->price_in_india }}</span>
+                                                    <span>${{ $product->special_price_india }}</span>
                                                 </div>
-
                                             </div>
+                                            <div class="slider-tab-pirce d-flex justify-content-between align-items-center">
+                                                <div class="price-wwrap-prdt">
+                                                    <span class="text-decoration-line-through">&#8377;{{ $product->price_in_india }}</span>
+                                                    <span>&#8377;{{ $product->special_price_india }}</span>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                         <div data-tab="tab-2" class="tab_content">
                                             <div class="swiper catslider">
