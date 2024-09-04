@@ -69,6 +69,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/orders', [WebHomeController::class, 'ordersList'])->name('orders');
 Route::get('/order-tracking/{order_id}', [WebHomeController::class, 'trackOrder'])->name('order.track');
 
+Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'dashboard'], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
+    Route::get('/profile', [App\Http\Controllers\Admin\UserController::class,'profile'])->name('admin.profile');
+});
 
 // Home routes
 Route::get('/', [WebHomeController::class, 'index'])->name('homeIndex');
